@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .circle{
+            width: 200px;
+            height: 200px;
+            border: 10px solid #000;
+            border-radius: 50%;
+            position: absolute;
+        }
+        .circle:after{
+            width: 200px;
+            height: 200px;
+            border: 10px solid #000;
+            border-radius: 50%;
+            position: absolute;
+            content:"";
+            top:-10px;
+            left:-10px;
+        }
+        .blue{
+            border-color: blue;
+        }
+        .blue:after{
+            border-color: blue;
+            border-bottom-color: transparent;
+            z-index:1;
+        }
+        .black{
+            border-color: black;
+            left: 240px;
+        }
+        .black:after{
+            border-color: black;
+            border-left-color: transparent;
+            z-index:1;
+        }
+        .red{
+            border-color: red;
+            left: 470px;
+        }
+        .red:after{
+            border-color: red;;
+            border-left-color: transparent;
+            z-index:3;
+        }
+        .yellow{
+            border-color: yellow;
+            left:110px;
+            top: 110px;
+        }
+        .yellow:after{
+            border-color: yellow;
+        }
+        .green{
+            border-color: green;
+            left:340px;
+            top: 110px;
+        }
+        .green:after{
+            border-color: green;
+            z-index: 2;
+            border-top-color: transparent;
+        }
+    </style>
+</head>
+<body>
+    <div class="circle blue"></div>
+    <div class="circle black"></div>
+    <div class="circle red"></div>
+    <div class="circle yellow"></div>
+    <div class="circle green"></div>
+</body>
+</html>
