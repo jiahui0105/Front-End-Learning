@@ -27,11 +27,11 @@
         var o = getComputedStyle(oDiv,false).opacity;//获取非内联样式
         var w = getComputedStyle(oDiv,false).width;
 
-//            if(o <= 0.1){
-//                oDiv.style.opacity = 0;
-//            }else{
-//                oDiv.style.opacity = o * 0.8;
-//            }
+           if(o <= 0.1){
+               oDiv.style.opacity = 0;
+           }else{
+               oDiv.style.opacity = o * 0.9;
+           }
         w = parseInt(w) + 10;
         console.log(w);
         if(w >=500){
