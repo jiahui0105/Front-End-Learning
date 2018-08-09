@@ -13,11 +13,15 @@
         <li v-for="i in 2">
             {{msg}}
         </li>
-        <li v-for="(val,index) in stuList">
-            {{index}}:学生姓名是：{{val.name}},年龄是：{{val.age}},
-        </li>
+        <!--<li v-for="(val,index) in stuList">-->
+            <!--{{index}}:学生姓名是：{{val.name}},年龄是：{{val.age}}-->
+        <!--</li>-->
         <li v-for="(val,key,index) in obj">
             {{index}},{{val}},{{key}}
+        </li>
+
+        <li v-for="(val,index) in sortStu">
+            {{index}},学生姓名是：{{val.name}},年龄是：{{val.age}}
         </li>
     </ul>
 </div>
@@ -42,6 +46,13 @@
                 a:1,
                 b:2,
                 c:3
+            }
+        },
+        computed:{
+            sortStu(){
+                return this.stuList.sort(function(a,b){
+                    return a.age - b.age;
+                });
             }
         }
     })
