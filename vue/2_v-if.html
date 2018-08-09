@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        <!--<p v-if="xx == 'A'">-->
+            <!--ppppp-->
+        <!--</p>-->
+        <!--<h1 v-else-if="xx == 'B'">-->
+            <!--h1h1h1-->
+        <!--</h1>-->
+        <!--<span v-else>-->
+            <!--spanspan-->
+        <!--</span>-->
+
+
+        <!--<template v-show="msg">-->
+            <!--<p>ppppp</p>-->
+            <!--<p>pppppp</p>-->
+            <!--<h1>h1h1h1h1</h1>-->
+        <!--</template>-->
+
+        <div v-if="msg">
+            ddd
+        </div>
+        <div v-else>
+            fff
+        </div>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                msg:false,
+                xx:'A'
+            }
+        });
+    </script>
+</body>
+</html>
