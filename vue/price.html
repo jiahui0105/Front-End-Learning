@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #app{
+            margin:0 auto;
+            width: 400px;
+        }
+        h1{
+            text-align: center;
+        }
+        li{
+            list-style: none;
+            height: 50px;
+            background: lightpink;
+            margin-bottom: 10px;
+            line-height: 50px;
+            padding: 0 20px;
+        }
+        span{
+            float: right;
+        }
+        .pink{
+            background: lightpink;
+        }
+        .blue{
+            background: lightblue;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <h1>services</h1>
+    <div id="div1">
+        <ul>
+            <li v-for="val in arr" :class="{blue:val.active}" @click = "fn(val)">
+                {{val.name}} <span>{{val.price}}</span>
+            </li>
+        </ul>
+        <hr>
+        total: <span>{{total}}</span>
+    </div>
+</div>
+<script src="vue.js"></script>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            arr:[
+                {name: 'aaa', price: 234,active:false},
+                {name: 'bbb', price: 927,active:false},
+                {name: 'ccc', price: 247,active:false},
+                {name: 'ddd', price: 316,active:false},
+                {name: 'eee', price: 532,active:false}
+                ],
+            total:0,
+        },
+        methods:{
+            fn(val){
+                val.active = !val.active;
+                if(val.active){
+                    this.total += val.price;
+                }else{
+                    this.total -= val.price;
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>
