@@ -12,60 +12,50 @@
 
 //    document.write("<h2>Hello,JavaScriptWorld!</h2>");
 //
-//    var Num = 'sssss';//赋值
+//    var Num = 'sssss';//字符串，它们总被包含在双引号(或单号)中
 //    var bool=true;
-//    Num = 122;
+//    Num = 122;//数字
 //
 //    var xx;
 //    xx = 1;
-//    console.log( typeof xx);
+//    console.log( typeof xx);//typeof获取变量类型 number string boolean(基础数据类型) 对象 数组（复合（引用）数据类型）Undefined（特殊数据类型）
 
 
 
 //        var s1 = 'hello';
 //        s1 = s1 + ' world';
-//
 //        console.log(s1);
 //
 //        s1 = s1 + '!!!!!';
 //
 //        console.log(s1);
 
-//        var c = true;
-//        var d = '0';
+// var bool = true;
+// console.log(bool*1);//输出1 ,布尔值true转换成数字为1,事实上将其它值转换在数字最简单的方法就是将其乘以1
 //
-////        alert( 2!=2);
+// bool = false;
+// console.log(bool*1);//输出0
+// console.log(bool+"");//输出"flase",将其它类型转换成字符串的最简单的方法就是将其写一个空字符串相连
 //
-//        console.log( !d);
+// var str = "some string";
+// console.log(!!str);//true,因为非运算符是针对布尔值进行运算的,所以将其它类型转换成布尔值只须将其连续非两次
+// str ="";
+// console.log(!!str);//输出false,只有空字符串转换成布尔值时会是false,非空字符串转换成布尔值都会返回true
+//
+// var num =0;
+// console.log(!!num);//false
+// num=-123.345;
+// console.log(!!num);//true,除0以外的任何数字转换成布尔值都会是true
+// console.log(""*1);//输出0,空字符串转换成数字将会是0
+
+//        NaN   not a number 当将其它值转换成数字失败时会得到这个值
 
 
-//        NaN   not a number
-//        console.log(c);
+    var msg = window.prompt("请输入一个数字","123");//window.prompt可以弹出包含输入框的窗口，用户输入的内容将是此函数的返回值
+    //prompt方法包含一个必须参数和一个可选参数。第一个参数是必须的，将在窗口中显示的文字，第二个参数是可选的，为文本框的预设值
 
-
-
-
-
-
-//    console.log('string'=='string');
-
-//    console.log('1111');
-    //string number  boolean undefined null
-
-
-//    console.log(xNUMx);
-//    console.log(xx);
-//    console.log(xx);
-//    console.log(xx);
-
-
-
-    var msg = window.prompt("请输入一个数字",'123');
-
-//    null
-
+    console.log(msg + 1);//输出1231,因为window.prompt()得到的为字符串   若想要输出为数字 需写成console.log(msg * 1 );
     console.log(msg * 1 + 1);
-
 
 </script>
 
