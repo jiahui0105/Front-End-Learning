@@ -6,37 +6,72 @@
 </head>
 <body>
 <script>
+    // Math对象
 
-//    var x = Math.max(3,4,5);
-//    console.log(x);
-//
-//    var d = new Date();
-//
-//    console.log(d.getFullYear());
+    // console.log(Math.PI);//输出π
+    // console.log(Math.pow(10,3));//输出10的3次方
+    // console.log(Math.abs(-12));//输出-12的绝对值
+    // var num=23.34;
+    // console.log(Math.ceil(num));//返回大于等于num的最小整数
+    // console.log(Math.floor(num));//返回小于等于num的最大整数
+    // console.log(Math.round(num));//返回与num最接近的整数(四舍五入)
+    // console.log(Math.random());//返回介于 0 和 1 之间的伪随机数。[0,1)
+    // console.log(Math.max(2,3,4));//返回多个数值参数中较大的那个
+    // console.log(Math.min(2,3,1));//返回多个数值参数中较小的那个
+    // console.log(Math.sqrt(2));//返回一个数的平方根
+    // console.log(Math.SQRT2);//返回2的平方根
+    // console.log(Math.SQRT1_2);//返回二分之一的平方根
 
-//    var x = ;
-//    var y = Math.floor(Math.random()*10);
-//    console.log(Math.floor(Math.random()*6+5));
+    console.log(Math.random()*10);//[0,10)随机数
+    console.log(Math.floor(Math.random()*10));//[0,10)整数
+    console.log(Math.floor(Math.random()*6+5));//[5,11）整数
 
-//    0~1
-
-//    5~10    x~y
-
-
-//    function fn(x,y){
-//        return Math.floor(Math.random() * (y - x + 1) + x);
-//    }
-//    console.log(fn(30,100));
-
-
-    var str = 'abcde';
-    console.log(str.charAt());
-
-
+    //随机取x~y的整数
+    function fn(x,y){
+        return Math.floor(Math.random() * (y - x + 1) + x);
+    }
+    console.log(fn(30,100));
 
 
+    //Date对象
+
+    // var d = new Date();//Date对象需要创建
+    // //Date 对象能够表示的日期范围约等于 1970 年 1 月 1 日前后各 285,616 年
+    // console.log(d);//直接输出这个对象,将会得到一个表示时间的字符串
+    // //这个对象有一些方法,可以用来获取时间的各个部分
+    // console.log(d.getYear());//获取年,2000年以前返回年份后两位,2000年之后的返回年份的完整表达方式
+    // console.log(d.getFullYear());//始终返回年份的4位数表达方式
+    // console.log(d.getMonth());//返回月份,注意,月份是从0开始计数的,所以1月时将返回0
+    // console.log(d.getDate());//返回今天几号
+    // console.log(d.getDay());//返回今天星期几,星期天是0,星期1是1....
+    // console.log(d.getHours());//返回小时
+    // console.log(d.getMinutes());//返回分钟
+    // console.log(d.getSeconds());//返回秒
+    // console.log(d.getMilliseconds());//返回毫秒
+    // console.log(d.getTime());
+    //返回一个整数值,这个整数代表了从1970年1月1日开始计算到Date对象中的时间之间的毫秒数
+    //日期的范围大约是1970年1月1日午夜的前后各285616年,负数代表1970年之前的日期
 
 
+    //还可以设置时间值
+    // var d=new Date();
+    // d.setFullYear(2004);
+    // d.setMonth(11);//设置月份为12月,注意月份是从0开始计数的
+    // d.setDate(2);
+    // d.setHours(6);
+    // d.setMinutes(12);
+    // d.setSeconds(12);
+    // console.log(d);//输出2004年12月2日星期几
+    // //setXXX这样的方法有个最大的好处就是如果我们设置了错误的值,脚本并不会出错,但日期会自动更正
+    // d= new Date();
+    // d.setFullYear(2003);
+    // d.setMonth(1);//月份从0开始计数
+    // d.setDate(31);//2月从来不会有31号
+    // console.log(d);//输出日期,发现会是3月3号
+
+
+    // var str = 'abcde';
+    // console.log(str.charAt(2));//输出c
 
 
 </script>
