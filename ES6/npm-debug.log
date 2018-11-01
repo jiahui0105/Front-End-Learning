@@ -1,0 +1,100 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install',
+1 verbose cli   '–g',
+1 verbose cli   'live-server' ]
+2 info using npm@3.10.10
+3 info using node@v6.11.0
+4 error arg Argument starts with non-ascii dash, this is probably invalid: [ '–g', 'live-server' ]
+5 silly loadCurrentTree Starting
+6 silly install loadCurrentTree
+7 silly install readLocalPackageData
+8 silly fetchPackageMetaData –g
+9 silly fetchPackageMetaData live-server
+10 silly fetchOtherPackageData –g
+11 silly cache add args [ '–g', null ]
+12 verbose cache add spec –g
+13 silly fetchNamedPackageData live-server
+14 silly mapToRegistry name live-server
+15 silly mapToRegistry using default registry
+16 silly mapToRegistry registry https://registry.npmjs.org/
+17 silly mapToRegistry data Result {
+17 silly mapToRegistry   raw: 'live-server',
+17 silly mapToRegistry   scope: null,
+17 silly mapToRegistry   escapedName: 'live-server',
+17 silly mapToRegistry   name: 'live-server',
+17 silly mapToRegistry   rawSpec: '',
+17 silly mapToRegistry   spec: 'latest',
+17 silly mapToRegistry   type: 'tag' }
+18 silly mapToRegistry uri https://registry.npmjs.org/live-server
+19 silly cache add parsed spec Result {
+19 silly cache add   raw: '–g',
+19 silly cache add   scope: null,
+19 silly cache add   escapedName: null,
+19 silly cache add   name: null,
+19 silly cache add   rawSpec: '–g',
+19 silly cache add   spec: 'C:\\Users\\dell\\WebstormProjects\\Front-End-Learning\\ES6\\–g',
+19 silly cache add   type: 'local' }
+20 verbose request uri https://registry.npmjs.org/live-server
+21 verbose request no auth needed
+22 info attempt registry request try #1 at 11:59:27
+23 verbose request id c4843ce7b100592d
+24 http request GET https://registry.npmjs.org/live-server
+25 error addLocal Could not install C:\Users\dell\WebstormProjects\Front-End-Learning\ES6\–g
+26 silly fetchPackageMetaData Error: ENOENT: no such file or directory, open 'C:\Users\dell\WebstormProjects\Front-End-Learning\ES6\–g'
+26 silly fetchPackageMetaData     at Error (native)
+26 silly fetchPackageMetaData  error for –g { Error: ENOENT: no such file or directory, open 'C:\Users\dell\WebstormProjects\Front-End-Learning\ES6\–g'
+26 silly fetchPackageMetaData     at Error (native)
+26 silly fetchPackageMetaData   errno: -4058,
+26 silly fetchPackageMetaData   code: 'ENOENT',
+26 silly fetchPackageMetaData   syscall: 'open',
+26 silly fetchPackageMetaData   path: 'C:\\Users\\dell\\WebstormProjects\\Front-End-Learning\\ES6\\–g' }
+27 info retry will retry, error on last attempt: TypeError: The header content contains invalid characters
+28 info attempt registry request try #2 at 11:59:37
+29 http request GET https://registry.npmjs.org/live-server
+30 info retry will retry, error on last attempt: TypeError: The header content contains invalid characters
+31 info attempt registry request try #3 at 12:00:37
+32 http request GET https://registry.npmjs.org/live-server
+33 silly fetchPackageMetaData TypeError: The header content contains invalid characters
+33 silly fetchPackageMetaData     at ClientRequest.OutgoingMessage.setHeader (_http_outgoing.js:360:11)
+33 silly fetchPackageMetaData     at new ClientRequest (_http_client.js:85:14)
+33 silly fetchPackageMetaData     at Object.exports.request (http.js:31:10)
+33 silly fetchPackageMetaData     at Object.exports.request (https.js:199:15)
+33 silly fetchPackageMetaData     at Request.start (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:740:32)
+33 silly fetchPackageMetaData     at Request.end (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:1398:10)
+33 silly fetchPackageMetaData     at end (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:567:14)
+33 silly fetchPackageMetaData     at Immediate.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:581:7)
+33 silly fetchPackageMetaData     at runCallback (timers.js:672:20)
+33 silly fetchPackageMetaData     at tryOnImmediate (timers.js:645:5)
+33 silly fetchPackageMetaData  error for live-server TypeError: The header content contains invalid characters
+33 silly fetchPackageMetaData     at ClientRequest.OutgoingMessage.setHeader (_http_outgoing.js:360:11)
+33 silly fetchPackageMetaData     at new ClientRequest (_http_client.js:85:14)
+33 silly fetchPackageMetaData     at Object.exports.request (http.js:31:10)
+33 silly fetchPackageMetaData     at Object.exports.request (https.js:199:15)
+33 silly fetchPackageMetaData     at Request.start (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:740:32)
+33 silly fetchPackageMetaData     at Request.end (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:1398:10)
+33 silly fetchPackageMetaData     at end (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:567:14)
+33 silly fetchPackageMetaData     at Immediate.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:581:7)
+33 silly fetchPackageMetaData     at runCallback (timers.js:672:20)
+33 silly fetchPackageMetaData     at tryOnImmediate (timers.js:645:5)
+34 silly rollbackFailedOptional Starting
+35 silly rollbackFailedOptional Finishing
+36 silly runTopLevelLifecycles Finishing
+37 silly install printInstalled
+38 verbose stack Error: ENOENT: no such file or directory, open 'C:\Users\dell\WebstormProjects\Front-End-Learning\ES6\–g'
+38 verbose stack     at Error (native)
+39 verbose cwd C:\Users\dell\WebstormProjects\Front-End-Learning\ES6
+40 error Windows_NT 10.0.17134
+41 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "–g" "live-server"
+42 error node v6.11.0
+43 error npm  v3.10.10
+44 error path C:\Users\dell\WebstormProjects\Front-End-Learning\ES6\–g
+45 error code ENOENT
+46 error errno -4058
+47 error syscall open
+48 error enoent ENOENT: no such file or directory, open 'C:\Users\dell\WebstormProjects\Front-End-Learning\ES6\–g'
+49 error enoent ENOENT: no such file or directory, open 'C:\Users\dell\WebstormProjects\Front-End-Learning\ES6\–g'
+49 error enoent This is most likely not a problem with npm itself
+49 error enoent and is related to npm not being able to find a file.
+50 verbose exit [ -4058, true ]
