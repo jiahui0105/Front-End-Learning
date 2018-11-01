@@ -355,6 +355,7 @@
 }
 #new-floor .hot-word{
     float: right;
+    position: relative;
 }
 #new-floor .hot-word li{
     float :left;
@@ -367,10 +368,13 @@
 #new-floor .mart img{
     width: 214px;
     height: 25px;
-    float: left;
+    /*float: left;*/
 }
 
-#new-floor .hot-banner1 img{
+#new-floor .hot-banner img{
     width: 235px;
     height: 618px;
+}
+#new-floor .hot-banner{
+    position: relative;
 }
