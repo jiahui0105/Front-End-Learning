@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="div1">
+        aaa
+    </div>
+    <script>
+        var obj = {
+            name:'zhangsan'
+        }
+        function a(name,age){
+            console.log(this,name,age);
+        }
+        //改变this指向的三种方法
+        a.call(obj,'xxx',20);//传值
+        a.apply(obj,['xxx',20]);//数组
+        a.bind(obj,'xxx',20)();//需调用
+
+        //使用call会使setTimeout()在声明时函数自己调用，想自己手动调用，用bind
+        // setTimeout((function(){
+        //     console.log(this.innerHTML);
+        // }).call(this),1000);
+
+         var oDiv = document.getElementById('div1');
+        oDiv.onclick = function(){
+            // console.log(this);
+            setTimeout((function(){
+                console.log(this.innerHTML);
+            }).bind(this),1000);
+        }
+
+        // setInterval(function(){
+        //     // console.log(this);
+        // },1000)
+
+
+
+    </script>
+    
+</body>
+</html>

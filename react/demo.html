@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Title</title>
+</head>
+<body>
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<script src="browser.min.js"></script>
+<div id="root"></div>
+<script type="text/babel">
+    class All extends React.Component{
+        constructor(props){
+            super(props);
+            this.state = {solider:this.state.solider}
+            this.change = this.change.bind(this)
+        }
+        change(num){
+            this.setState({
+                solider:this.props.solider - num
+            })
+        }
+        render(){       //返回渲染到页面的内容
+            return(
+                <div>
+                    <p>全部士兵数量:{this.state.solider}</p>
+                    <General1 solider = {100}></General1>
+                    <General2 solider = {100}></General2>
+                </div>
+            )
+        }
+    }
+    class General1 extends React.Component{
+        constructor(props){
+            super(props);
+            this.state = {solider:this.state.solider}
+        }
+        addsolider(){
+            this.setState({
+                solider:this.props.solider + 10
+            })
+        }
+        render(){
+            return(
+                <div>
+                    <p>将军a有士兵:{this.state.solider}</p>
+                    <button onClick="addsolider">调兵</button>
+                </div>
+            )
+        }
+    }
+    class General2 extends React.Component{
+        constructor(props){
+            super(props);
+            this.state = {solider:this.state.solider}
+        }
+        addsolider(){
+            this.setState({
+                solider:this.props.solider + 10
+            })
+        }
+        render(){
+            return(
+                <div>
+                    <p>将军b有士兵:{this.state.solider}</p>
+                    <button onClick="addsolider">调兵</button>
+                </div>
+            )
+        }
+    }
+
+    ReactDOM.render(
+        <All solider = {100}></All>,
+        document.getElementById('root')
+    )
+</script>
+</body>
+</html>

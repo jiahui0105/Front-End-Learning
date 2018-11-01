@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>拖拽</title>
+    <style>
+        *{
+            margin: 0;
+            padding:0;
+        }
+        #div1{
+            width: 200px;
+            height: 200px;
+            background: #ff0000;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div id="div1"></div>
+    <script>
+        var oDiv = document.getElementById('div1');
+        oDiv.onmousedown = function(e){
+
+            var ileft = e.clientX - this.offsetLeft;
+            var itop = e.clientY - this. offsetTop;
+            document.onmousemove = function(e){
+
+                var div
+            }
+        }
+    </script>
+</body>
+</html>

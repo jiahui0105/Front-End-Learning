@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Title</title>
+</head>
+<body>
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<script src="browser.min.js"></script>
+<div id="root"></div>
+<script type="text/babel">
+    class Main extends React.Component{
+        constructor(props){
+            super(props);
+            this.state = {msg:'商品列表'}
+        }
+        change(msg){
+            this.setState({
+                msg:msg
+            })
+        }
+        render(){
+            return(
+                <div>
+                    <h1>{this.state.msg}</h1>
+                    <Product name=""></Product>
+                </div>
+            )
+        }
+    }
+
+    ReactDOM.render(
+            <Main></Main>,
+            document.getElementById('root')
+        )
+</script>
+</body>
+</html>
