@@ -7,17 +7,18 @@
 <body>
 <div id="app">
     <ul>
-        <li v-for="(i,val) in arr">
-            {{val}},{{i}}
+        <li v-for="(val,index) in arr">
+            {{index}},{{val}}
         </li>
         <li v-for="i in 2">
             {{msg}}
         </li>
-        <!--<li v-for="(val,index) in stuList">-->
-            <!--{{index}}:学生姓名是：{{val.name}},年龄是：{{val.age}}-->
-        <!--</li>-->
+        <li v-for="(val,index) in stuList">
+            {{index + 1}}:学生姓名是：{{val.name}},年龄是：{{val.age}}
+            <!--vm.stuList.push({name:'liyif',age:26})-->
+        </li>
         <li v-for="(val,key,index) in obj">
-            {{index}},{{val}},{{key}}
+            {{val}},{{key}},{{index}}
         </li>
 
         <li v-for="(val,index) in sortStu">
@@ -43,9 +44,9 @@
                 age:25
             }],
             obj:{
-                a:1,
                 b:2,
-                c:3
+                c:3,
+                d:4
             }
         },
         computed:{

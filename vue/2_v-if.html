@@ -6,28 +6,26 @@
 </head>
 <body>
     <div id="app">
-        <!--<p v-if="xx == 'A'">-->
-            <!--ppppp-->
-        <!--</p>-->
-        <!--<h1 v-else-if="xx == 'B'">-->
-            <!--h1h1h1-->
-        <!--</h1>-->
-        <!--<span v-else>-->
-            <!--spanspan-->
-        <!--</span>-->
+        <p v-if="xx == 'A'">
+            ppppp
+        </p>
+        <h1 v-else-if="xx == 'B'">
+            h1h1h1
+        </h1>
+        <span v-else>
+            spanspan
+        </span>
+        <!--v-else需用在v-if之后-->
 
+        <!--template模板 新版本中template里用v-show不好使-->
+        <template v-if="msg">
+            <p>ppp</p>
+            <p>ppppp</p>
+            <h1>h1h1h1h1</h1>
+        </template>
 
-        <!--<template v-show="msg">-->
-            <!--<p>ppppp</p>-->
-            <!--<p>pppppp</p>-->
-            <!--<h1>h1h1h1h1</h1>-->
-        <!--</template>-->
-
-        <div v-if="msg">
+        <div v-show="msg">
             ddd
-        </div>
-        <div v-else>
-            fff
         </div>
     </div>
     <script src="vue.js"></script>
@@ -35,10 +33,14 @@
         var vm = new Vue({
             el:'#app',
             data:{
-                msg:false,
-                xx:'A'
+                msg: false,
+                xx: 'A'
             }
         });
-    </script>
+</script>
 </body>
 </html>
+
+<!--vm.xx= 'B'-->
+<!--vm.xx= 'C'-->
+<!--vm.msg= true-->

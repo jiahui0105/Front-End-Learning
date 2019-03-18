@@ -6,7 +6,8 @@
 </head>
 <body>
 <script>
-
+    // sort默认是按字符串排序
+    // 若想按照其他标准进行排序 需要提供比较函数
     var arr = [1,4,5,6,8,3,12];
     arr.sort(function(a,b){
         return Math.random() - 0.5;
