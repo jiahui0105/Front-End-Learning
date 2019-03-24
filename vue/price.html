@@ -55,16 +55,29 @@
                 {name: 'ddd', price: 316,active:false},
                 {name: 'eee', price: 532,active:false}
                 ],
-            total:0,
+            // total:0,
         },
         methods:{
             fn(val){
                 val.active = !val.active;
-                if(val.active){
-                    this.total += val.price;
-                }else{
-                    this.total -= val.price;
-                }
+                // if(val.active){
+                //     this.total += val.price;
+                // }else{
+                //     this.total -= val.price;
+                // }
+            },
+        },
+
+        // 计算属性会有缓存
+        computed:{
+            total(){
+                let sum = 0;
+                this.arr.forEach(function(elem){
+                    if(elem.active){
+                        sum += elem.price;
+                    }
+                });
+                return sum;
             }
         }
     })

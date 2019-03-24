@@ -14,7 +14,7 @@
     <input type="text" v-model="val" @keyup="search">
     <button @click="add">add</button>
     <ul>
-        <li v-for="(xx,index) in showArr" :class="{blue:xx.active}" @click = "xx.active = !xx.active">
+        <li v-for="(xx,index) in arr" :class="{blue:xx.active}" @click = "xx.active = !xx.active" v-show="xx.isShow">
             {{xx.value}}
             <button @click="del(index)">del</button>
         </li>
@@ -27,23 +27,30 @@
         data:{
             arr:[],//添加的信息
             val:'',
-            showArr:[]//显示的信息
+            // showArr:[]//显示的信息
         },
         methods:{
-            add() {
-                this.arr.push({value: this.val, active: false});//js自带语法
-                this.val = '';
-                this.arr.sort(function (a, b) {
+            add(){
+                this.arr.push({value:this.val,active:false,isShow:true});
+                this.val='';
+                this.fn();
+                this.arr.sort(function(a,b){
                     return a.value - b.value;
                 });
-                this.showArr = this.arr;
+                // this.showArr = this.arr;
             },
             search(){
-                // 返回一个满足条件的新数组
-                var newArr = this.arr.filter((elem,index)=>{
-                    return elem.value.indexOf(this.val) != -1;
-                });
-                this.showArr = newArr;
+                this.fn();
+                this.arr.forEach((elem)=>{
+                    if(elem.value.indexOf(this.val) == -1){
+                        elem.isShow = false;
+                    }
+                })
+            },
+            fn(){
+                this.arr.forEach((elem)=> {
+                    elem.isShow = true;
+                })
             },
             del(index){
                 this.arr.splice(index,1);
