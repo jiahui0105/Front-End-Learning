@@ -6,11 +6,12 @@
 </head>
 <body>
 <div id="app">
-    是否需要额外付费设施：<input type="checkbox" v-model="isShow" @click="fn">
+    是否需要额外付费设施：
+    <input type="checkbox" v-model="isShow" @click="fn">
     <ul>
-        <li v-for="val in arr" v-show="isShow">
-            {{val.name}}({{val.price}})
-            <input type="checkbox" v-model="facilityArr" :value="val">
+        <li v-for="xxx in arr" v-show="isShow">
+            {{xxx.name}}({{xxx.price}})
+            <input type="checkbox" v-model="facilityArr" :value="xxx">
         </li>
     </ul>
     订单费用信息：
@@ -46,7 +47,7 @@
                 var sum = 0;
                 this.facilityArr.forEach(function(x){
                     sum += x.price;
-                })
+                });
                 return sum;
             }
         }
