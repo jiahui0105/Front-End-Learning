@@ -1,7 +1,8 @@
 module.exports = {
-    // 选项...
-    lintOnSave:false,
-    devServer:{
-        port: 8081
-    }
-}
+      //配置
+  lintOnSave:false,
+  // 改端口
+  // devServer:{
+  //   port: 8081
+  // }
+};
