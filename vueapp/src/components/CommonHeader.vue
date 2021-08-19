@@ -1,36 +1,42 @@
 <template>
-    <div class="header" :style="{background:bgColor}">
-        <span class="header-home">首页</span>
-        <h1 class="header-title">{{title}}</h1>
-    </div>
+    <header id="header" :style="{background: config.color}">
+        <span class="header-back" @click="goHome">首页</span>
+        {{config.title}}
+    </header>
 </template>
 
 <script>
-    import {mapState} from 'vuex';
-
-    export default{
-        computed:mapState(['bgColor','title']),
+    export default {
+        props: ['config'],
+        methods:{
+            goHome(){
+                //编程式导航
+                this.$router.push('/');
+                //点击首页后 向header中传值修改其颜色和文字 和@setselectmenu配对
+                this.$emit('setselectmenu',{
+                    name: '电影',
+                    path: '/',
+                    color: '#00a1d6'
+                })
+            }
+        }
     }
 </script>
 
-<style lang="scss">
-    .header{
-        height: 1rem;
+<style lang="scss" scoped>
+    #header{
         width: 100%;
-        background:rgb(33, 150, 243);
-        color: #fff;
-        position:fixed;
-        top:0;
+        height: 1rem;
         line-height: 1rem;
-        &-home{
-            font-size: 16px;
+        text-align: center;
+        background: #00a1d6;
+        position: fixed;
+        top:0;
+        left: 0;
 
-        }
-        &-title{
+        .header-back{
             position: absolute;
-            top:50%;
-            left:50%;
-            transform: translate(-50%,-50%);
+            left:0.2rem;
         }
     }
 </style>

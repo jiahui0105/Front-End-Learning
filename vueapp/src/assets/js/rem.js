@@ -1,4 +1,4 @@
-;
+
 (function(win) {
     var doc = win.document;
     var docEl = doc.documentElement;
@@ -6,7 +6,7 @@
 
     function refreshRem() {
         var width = docEl.getBoundingClientRect().width;
-        var rem = width / 6.4; // 将屏幕宽度分成6.4份， 1份为1rem
+        var rem = width / 7.5; // 将屏幕宽度分成7.5份， 1份为1rem
         docEl.style.fontSize = rem + 'px';
         // console.log(0.14*rem);
     }
