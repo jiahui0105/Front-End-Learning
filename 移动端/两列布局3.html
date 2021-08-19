@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自适应定位</title>
+    <style>
+        *{
+            margin:0;
+        }
+        .content{
+            position: relative;
+        }
+        .left{
+            width: 200px;
+            height: 200px;
+            background-color: blue;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .right {
+            height: 500px;
+            background-color: red;
+            margin-left: 210px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+</body>
+</html>

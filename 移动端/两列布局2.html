@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自适应 弹性盒模型</title>
+    <style>
+        *{
+            margin:0;
+        }
+        .content{
+            display:flex;
+        }
+        .left{
+            width: 200px;
+            height: 200px;
+            background-color: blue;
+            margin-right: 10px;
+        }
+        .right{
+            height: 500px;
+            background-color: red;
+            /*flex-grow分份,分配当前剩余空间*/
+            flex-grow:1;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+</body>
+</html>
