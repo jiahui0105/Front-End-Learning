@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //字符串拼接 "+p+"
+   var p= 'ssssssssss';
+   var str = "<div>'<p>"+p+"</p>"+p+"<h1></h1>'</div>";
+   console.log(str);
+
+   var a = 1,b=4;
+   //模板字符串 ${p}  {}里只能写表达式
+   var str1 = `<div>${ a + b==5? true:false }</div>`;
+   console.log(str1);
+
+
+   var str = '宝宝心里苦';
+   console.log(str.includes('宝宝',2));// false  从索引2开始往后找
+   console.log(str.startsWith('宝宝',2));
+   console.log(str.endsWith('宝宝'));//false
+   console.log(str.repeat(3));//重复三次
+
+   var str = 'abc';
+   console.log(str.padStart(12,'1234'));//123412341abc
+   console.log(str.padEnd(10,'1234'));//abc1234123
+
+
+</script>
+</body>
+</html>

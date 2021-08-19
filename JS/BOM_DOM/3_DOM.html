@@ -14,7 +14,7 @@
         sssssss
     </div>
     <input type="text" name="s1">
-    <input type="text" name="s1">
+    <input type="text" name="s1">1
     <input type="text" name="s1" class="111">
 
     <script>
@@ -40,20 +40,26 @@
 
 //        console.log(p1.tagName == 'p');
 //        事件三要素：事件源  事件执行函数  事件本身(事件对象)
+
 //        div.onclick = function(e){
 ////            e = e || window.event;
 ////            event
-//            console.log(e.target);
-//            console.log(e.currentTarget);
-//            console.log(this);// 当前对象引用
 
-//            if(e.target.tagName =='P'){
-//                console.log(1111);
-//            }else{
-//                console.log(2222);
-//            }
+// 真正点击的 target
+           console.log(e.target);
 
-//        }
+// 绑定的事件 currentTarget
+           console.log(e.currentTarget);
+
+           console.log(this);// 当前对象引用
+
+//        tagName的返回值为大写
+           if(e.target.tagName =='P'){
+               console.log(1111);
+           }else{
+               console.log(2222);
+           }
+
 
 //        function fn(){
 //            console.log(this);

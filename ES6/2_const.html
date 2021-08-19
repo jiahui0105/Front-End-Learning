@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+
+    //const 定义常量 和let特性一样
+
+   // var NUM = 10;
+    const NUM = {
+        name:'zs',
+        age:12
+    };
+    //freeze 不能改动
+    Object.freeze(NUM);
+    NUM.name = 'lisi';
+    console.log(NUM);
+
+   {
+       const A = 10;
+   }
+   console.log(A);
+
+   {
+       var A = 10;
+   }
+   console.log(A);
+
+</script>
+</body>
+</html>

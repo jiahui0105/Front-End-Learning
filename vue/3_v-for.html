@@ -10,6 +10,7 @@
         <li v-for="(val,index) in arr">
             {{index}},{{val}}
         </li>
+        <!--循环两次-->
         <li v-for="i in 2">
             {{msg}}
         </li>
@@ -17,10 +18,11 @@
             {{index + 1}}:学生姓名是：{{val.name}},年龄是：{{val.age}}
             <!--vm.stuList.push({name:'liyif',age:26})-->
         </li>
+        <!--v-for里必须按照val key index的顺序，但显示的顺序可以自定义-->
         <li v-for="(val,key,index) in obj">
             {{val}},{{key}},{{index}}
         </li>
-
+        <!--computed中的sortStu可实时更新数据-->
         <li v-for="(val,index) in sortStu">
             {{index}},学生姓名是：{{val.name}},年龄是：{{val.age}}
         </li>
@@ -51,6 +53,7 @@
         },
         computed:{
             sortStu(){
+                // this相当于vm 返回vm中的stuList对象
                 return this.stuList.sort(function(a,b){
                     return a.age - b.age;
                 });

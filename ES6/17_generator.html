@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="jquery-1.12.4.js"></script>
+<script>
+
+    //Generator 函数是 ES6 提供的一种异步编程解决方案
+    //有两个特征。一是，function关键字与函数名之间有一个星号；二是，函数体内部使用yield表达式，定义不同的内部状态
+    //由于 Generator 函数返回的遍历器对象，只有 调用next方法 才会遍历下一个内部状态，
+    // 所以其实提供了一种可以暂停执行的函数。yield表达式就是暂停标志。
+    //yield表达式本身没有返回值，或者说总是返回undefined。
+    // next方法可以带一个参数，该参数就会被当作上一个yield表达式的返回值。
+
+    // function* fn(){
+    //        yield 'hello';
+    //        yield 'world';
+    //        yield 'generator';
+    //        return 0;
+    //    }
+    // var gen = fn();
+    // console.log(gen.next());  //输出yield后面的 hello false(未执行完)
+
+    function request(url){
+        $.get(url,res=>{
+            console.log(res);
+//            console.log(g.next()); //执行完一个 调用下一个
+        });
+//        setTimeout(function(){
+//            console.log(1);
+//        },0);
+        return 0;
+    }
+
+    function* fn(){
+        yield request('a.json');
+        yield request('b.json');
+        yield request('c.json');
+        return 0;
+    }
+
+    var g = fn();
+    var a = g.next(); //调用next 然后执行yield后的request request输出res
+//    var b = g.next(); //什么时候调用next 什么时候输出 实现异步
+//    var c = g.next();
+    console.log(a);
+
+    //----------------------------
+
+   function* fn(){
+       var x =  2 * (yield 3+5);
+       var y = yield x / 4;
+       return y;
+   }
+
+   var gen = fn();
+   var a =gen.next();//16
+   console.log(gen.next(a.value));//4 false
+   console.log(gen.next(3));
+
+
+
+
+</script>
+</body>
+</html>

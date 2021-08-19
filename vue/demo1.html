@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .blue{
+            color: royalblue;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <input type="text" v-model="val" @keyup="search">
+    <button @click="add">add</button>
+    <ul>
+        <li v-for="(xx,index) in showArr" :class="{blue:xx.active}" @click = "xx.active = !xx.active">
+            {{xx.value}}
+            <button @click="del(index)">del</button>
+        </li>
+    </ul>
+</div>
+<script src="vue.js"></script>
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            arr:[],//添加的信息
+            val:'',
+            showArr:[]//显示的信息
+        },
+        methods:{
+            add() {
+                this.arr.push({value: this.val, active: false});//js自带语法
+                this.val = '';
+                this.arr.sort(function (a, b) {
+                    return a.value - b.value;
+                });
+                this.showArr = this.arr;
+            },
+            search(){
+                // filter会返回一个满足条件的新数组
+                var newArr = this.arr.filter((elem,index)=>{
+                    return elem.value.indexOf(this.val) != -1;
+                });
+                this.showArr = newArr;
+            },
+            del(index){
+                // splice向数组中添加/删除元素 返回被删除的元素
+                //splice(2) 数组长度变为2。。splice(index,1)从下标为index开始删除1个元素。。三个参数时 第三个参数表示把删掉的替换成该参数
+                // 可以做到视图上更新  此外 Vue.set(vm.arr,4,8)也可以视图更新 arr数组中下标为4的改成8
+                this.arr.splice(index,1);
+            }
+        }
+    })
+</script>
+</body>
+</html>

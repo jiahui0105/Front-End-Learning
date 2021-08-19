@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+
+       var set = new Set();
+       set.add('123');
+       set.add(123);
+       set.add(true);
+       set.add(123);//添加两次123只显示一个，和数组的区别：不能存入重复值
+
+//对数组去重
+
+       //第四种方法 set
+       var arr = [1,2,32,3,4,5,3,2];
+       var s = new Set(arr);
+       console.log( Array.from(s) );//把类似于数组的结构转化成数组
+
+       var arr = [1,2,2,32,3,4,5,3,2];
+       var obj = {};
+       var newArr = [];
+       for(var i=0;i<arr.length;i++){
+           //第二种方法
+//            if(!obj[arr[i]]){
+//                newArr.push(arr[i]);
+//                obj[arr[i]] = true;
+//            }
+           obj[arr[i]] = true; //第一种直接方法
+       }
+       console.log(newArr);
+
+       // for(var key in obj){
+       //     console.log(key);
+       // }
+
+       //获取动态属性需要加[]  xxx:true
+       var a = 'xxx';
+       obj[a] = true;
+
+
+       //第三中方法去重
+       var newArr = [];
+       for(var i=0;i<arr.length;i++){
+           if(newArr.indexOf(arr[i]) == -1){
+               newArr.push(arr[i]);
+           }
+       }
+       console.log(newArr);
+
+
+       set.delete("123");
+       set.clear();//清除
+       console.log(set.size);//长度
+
+
+       //以下四种 循环每一个里面的值
+       for(var k of set){
+           console.log(k);
+       }
+
+       var keys = set.keys();
+       console.log(keys);
+
+       var values = set.values();
+       console.log(values);
+       //键值对
+       var entries = set.entries();
+       for(var key of entries){
+           console.log(key);
+       }
+
+    </script>
+</body>
+</html>

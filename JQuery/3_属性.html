@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+        li{
+            padding: 2px;
+            border: 1px solid;
+            margin: 3px;
+        }
+        div{
+            margin-left: 30px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div id="div2">
+    <div id="div1" class="aa">
+        <p>ppppp</p>
+    </div>
+</div>
+
+    <!--<ul>-->
+        <!--<li>111</li>-->
+        <!--<li>222</li>-->
+        <!--<li>333</li>-->
+    <!--</ul>-->
+    <script src = jquery-1.12.4.js></script>
+    <script>
+//        var oDiv = document.getElementById('div1');
+//        var oDiv2 = document.getElementById('div2');
+
+//        oDiv2.appendChild(oDiv.cloneNode());
+//        oDiv.xx = 'yy';
+//        oDiv.setAttribute('xx','yy');
+
+        $(function () {
+            $('#div1').click(function () {
+                console.log(111111);
+            });
+
+            //深克隆 把包含的孩子也会克隆过来 true表示同时复制子元素的事件 false不复制
+            $('#div2').append($('#div1').clone(true));
+
+            //innerHeight内部高度 包括padding 但不包括border，outerHeight 包括padding和border，outerHeight(true)则包含margin border padding
+           console.log($('li').innerHeight());
+           console.log($('li').outerHeight());
+
+            //offset获取第一个元素的当前坐标 （相对于文档的） 或者 设置每一个元素的坐标，position获取的是相对于父元素的坐标
+            // offsetParent获取离指定元素最近的 含有定位元素的祖先元素
+           console.log($('#div1').offset());
+            console.log($('#div1').position());
+           console.log($('#div1').offsetParent());
+
+//            $(document).scroll(function () {
+//                console.log($(document).scrollTop());
+//            });
+
+            //添加类  移除类
+           $('#div1').addClass('bb');
+           $('#div1').removeClass('bb');
+               console.log($('#div1').hasClass('cc'));  //输出false  div1中没有cc
+
+//             toggle 切换开关   div1中有bb就删除bb   否则就加上bb
+           $('#div1').toggleClass('bb');
+
+//            $('#div1').css('width',function(){
+//                var a = 100,b=200;
+//                return a + b;
+//            });
+
+            // 添加属性 移除属性
+//            $('#div1').attr('xx','c1');
+//            $('#div1').prop('yy','c2');
+//            console.log($('#div1').prop('yy'));
+//            $('#div1').removeAttr('id');
+
+        })
+
+    </script>
+</body>
+</html>

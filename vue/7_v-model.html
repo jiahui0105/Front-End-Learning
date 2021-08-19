@@ -6,6 +6,8 @@
 </head>
 <body>
 <div id="app">
+    <!--双向数据绑定-->
+    <!--v-model绑定input的value值和data的value值-->
     <input type="text" @keyup.enter="fun" v-model="val">
     {{msg}}
 </div>
@@ -23,6 +25,8 @@
                 //     this.msg += this.val * 1;
                 // }
                 this.msg += this.val * 1;
+                // this.msg += Number(this.val);
+                // *1也可转化成number
             }
         }
     })

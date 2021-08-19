@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+
+    function fn(a,b){
+        console.log(a,b);
+        console.log(this);
+    }
+
+    var o = {
+        name:'zs'
+    };
+    //call和apply改变函数指向 直接调用 apply传数组
+   fn.call(o,1,2);
+
+   var arr = [1,2];
+   fn.apply(o,arr);
+
+   //bind改变函数指向 但不会调用
+   var f = fn.bind(o,1,2);
+    f();
+//   fn.bind(o)();
+
+</script>
+</body>
+</html>

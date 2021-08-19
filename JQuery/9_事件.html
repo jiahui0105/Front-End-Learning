@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="div1">div</div>
+<input type="text" id="ipt">
+<script src="jquery-1.12.4.js"></script>
+<script>
+
+    var fn = function () {
+        console.log(1111);
+    };
+    //event.which 针对键盘key和鼠标mouse事件 能确定按的是哪个键
+    $('#ipt').mousedown(function(e){
+        console.log(e.which);
+    });
+
+    //绑定事件
+       $('#div1').on('click',fn);
+    //移除事件
+       $('#div1').off('click',fn);
+
+    //hover里的两个事件 一个滑入 另一个滑出
+   $('#div1').hover(function(e){
+       console.log(1111);
+   },function(){
+       console.log(22222);
+   });
+   $('#div1').on('click', fn);
+
+   //自动触发事件
+   $('#div1').trigger('click');
+   //触发一次事件
+   $('#div1').one('click',fn);
+
+   $('#div1').click(function () {
+
+   });
+
+</script>
+</body>
+</html>

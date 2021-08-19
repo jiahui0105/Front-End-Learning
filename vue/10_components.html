@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<demo></demo>
+<div id="app1">
+    <!--<demo1 x-msg="123"yy="haha"></demo1>-->
+    <!--<demo1 x-msg="456"yy="hehe"></demo1>-->
+
+    <!--html不区分大小写 而js区分 把xMsg中的M换成-m-->
+    <demo1 x-msg="123" :yy="m1"></demo1>
+    <demo1 x-msg="123" :yy="m2"></demo1>
+    {{msg1}}
+</div>
+
+<script type="text/x-template" id="temp">
+    <div>
+        {{xMsg}}
+        <h1>{{yy}}</h1>
+    </div>
+</script>
+
+<div id="app2">
+    <demo2></demo2>
+    <!--<demo></demo>-->
+    {{msg2}}
+</div>
+
+<script src="vue.js"></script>
+<script>
+    //全局组件 不常用
+    // Vue.components('demo',{
+    //     template:"<div>div</div>"
+    // });
+
+
+    new Vue({
+        el:'#app1',
+        data:{
+            msg1:'xx',
+            m1:'hahaha',
+            m2:'hehehe',
+        },
+        //局部组件
+        components:{
+            demo1:{
+                template:"#temp",
+                // 或者把temp直接放到里面  template:"<div>{{xMsg}}<h1>{{yy}}</h1></div>"
+                //props里的'xMsg'表示demo1能够接收的值
+                props:['xMsg','yy']
+            }
+        }
+    });
+    new Vue({
+        el:'#app2',
+        data:{
+            msg2:'xxx'
+        },
+        components:{
+            demo2:{
+                template:"<div>div2</div>"
+            }
+        }
+    })
+</script>
+</body>
+</html>

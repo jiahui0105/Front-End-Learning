@@ -72,7 +72,78 @@
     </div>
     <script src="jslib.js"></script>
     <script>
+        var aLi = document.getElementsByTagName('li');
+        var aImg = document.getElementsByTagName('img');
+        var oContain = document.getElementById('contain');
+        var oPrev = document.getElementById('prev');
+        var oNext = document.getElementById('next');
+        var nowIndex = 0;
+        var zIndex = 4;
+        // 默认为第一个图片 aImg[0]的zIndex值为最大的4
+        for(var i=0;i<aImg.length;i++){
+            aImg[i].style.zIndex = aImg.length - i;
+        }
 
+        for(var i = 0;i < aLi.length;i++){
+            aLi[i].index = i;
+            aLi[i].onmouseover = function(){
+                // 初始nowindex为0，把滑入的nowindex变成当前的索引
+                nowIndex = this.index;
+                changeImg(this.index);
+            }
+            // 这个事件主要是用于禁止选择网页中的文字
+            aLi[i].onselectstart = function(){
+                return false;
+            };
+        }
+        oNext.onclick = function(){
+            nowIndex++;
+            if(nowIndex == aLi.length){
+                nowIndex = 0;
+            }
+            changeImg(nowIndex);
+        }
+        oPrev.onclick = function(){
+            nowIndex--;
+            if(nowIndex == -1){
+                nowIndex = aLi.length - 1;
+            }
+            changeImg(nowIndex);
+        }
+
+        function changeImg(index){
+            for(var j = 0;j < aLi.length;j++){
+                aLi[j].className = '';
+                // aImg[j].className = '';
+            }
+            aLi[index].className = 'selected';
+            // aImg[index].className = 'selected';
+            // zIndex默认值为4 从4开始 每次加一变成最大 即可显示在最上面
+            aImg[index].style.zIndex = ++zIndex;
+            aImg[index].style.opacity = 0;
+            animate(aImg[index],{opacity:100});
+        }
+
+        oContain.onmouseover = function(){
+            clearInterval(timer);
+        }
+        oContain.onmouseout = function(){
+            play();
+        }
+        // function play(){
+        //         timer = setInterval(function(){
+        //             oNext.onclick();
+        //         },1000);
+        // }
+
+        var fn = function(){
+            oNext.onclick();
+        }
+        play();
+
+        function play(){
+            timer = setInterval(fn,1000);
+        }
     </script>
 </body>
 </html>

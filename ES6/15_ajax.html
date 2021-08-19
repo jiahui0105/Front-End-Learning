@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <button id="btn">btn</button>
+    <ul id="ul1">
+
+    </ul>
+    <script src="jquery-1.12.4.js"></script>
+<script>
+
+//简单方法
+
+    $('#btn').click(function(){
+        // $.get(url请求路径， 请求的参数，  callback回调函数，   'json/text/html')
+        $.get('https://bird.ioliu.cn/v1?url=https://api.douban.com/v2/movie/in_theaters',{name:'zs',passsword:'123'},function(data){
+//            $("#div1").html(data.a); //输出 我是一个页面
+
+            //添加到ul里
+            data.subjects.forEach(function(elem){
+                var $li = $(`<li>${elem.title}</li>`);
+                $('#ul1').append($li);
+            });
+
+        },'json');
+    });
+
+
+//原生ajax方法
+
+    //1.创建xmlhttp 对象
+   var oBtn = document.getElementById('btn');
+   var oDiv = document.getElementById('div1');
+
+   oBtn.onclick = function(){
+       var xmlhttp;
+       if (window.XMLHttpRequest)
+       {// code for IE7+, Firefox, Chrome, Opera, Safari
+           xmlhttp=new XMLHttpRequest();
+       }
+       else
+       {// code for IE6, IE5
+           xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+       }
+
+//    2.向服务器发送请求
+       //true 是否异步操作
+       xmlhttp.open("GET","a.json",true);
+       xmlhttp.send();
+
+//    3.服务器响应
+       xmlhttp.onreadystatechange=function()
+       {
+           if (xmlhttp.readyState==4 && xmlhttp.status==200)
+           {
+               oDiv.innerHTML = JSON.parse(xmlhttp.responseText).a;//JSON.parse将一个对象结构的字符串转化成真正的对象
+//                console.log(JSON.parse(xmlhttp.responseText)); //输出{a:"我是一个页面"}
+//                JSON.stringify() //将对象转化成字符串
+           }
+       }
+
+   }
+
+</script>
+</body>
+</html>

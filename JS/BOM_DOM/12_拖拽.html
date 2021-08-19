@@ -26,8 +26,27 @@
             var itop = e.clientY - this. offsetTop;
             document.onmousemove = function(e){
 
-                var div
+                var divLeft = e.clientX - ileft;
+                var divTop = e.clientY - itop;
+                // 移出到屏幕外
+                if(divLeft > document.documentElement.offsetWidth - oDiv.offsetWidth){
+                    divLeft = document.documentElement.offsetWidth - oDiv.offsetWidth;
+                }else if(divLeft<0){
+                    divLeft = 0;
+                }
+                if(divTop > window.innerHeight - oDiv.offsetHeight){
+                    divTop = window.innerHeight - oDiv.offsetHeight;
+                }else if(divTop < 0){
+                    divTop  = 0;
+                }
+
+                oDiv.style.left = divLeft +'px';
+                oDiv.style.top = divTop+'px';
             }
+            oDiv.onmouseup = function () {
+                document.onmousemove = null;
+            }
+
         }
     </script>
 </body>

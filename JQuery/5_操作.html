@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="div3">
+        <div id="div1">
+            <p>pppppp</p>
+        </div>
+    </div>
+
+    <div id="div2">
+        div2
+    </div>
+<script src="jquery-1.12.4.js"></script>
+<script>
+    //删除元素的父级元素
+    $('p').unwrap();
+
+    //链式操作 p添加到div后 p变红
+   $('<p>pppppp</p>').appendTo($('#div1'))
+       .css('background','red');
+    //div添加p之后 div整体变红
+      $('#div1').append($('<p>pppppp</p>'))
+           .css('background','red');
+
+    //html添加会转化成标签，text只添加纯文本
+   $('#div1').html('<h1>hhhhhhh</h1>');
+   $('#div2').text('<h1>hhhhhhh</h1>');
+    //after会当成 兄弟 元素添加，append当成孩子元素添加
+   $('#div1').after('<h1>hhhhhhh</h1>');
+   $('#div1').before('<h1>hhhhhhh</h1>');
+
+
+       $('#div1').click(function () {
+           console.log(11111);
+       });
+    //remove会把相关的事件和数据都删除 再次插入也没有了
+       var xx = $('#div1').detach();
+       var xx = $('#div1').remove();
+       console.log(xx);
+       $('#div2').after(xx);
+</script>
+</body>
+</html>

@@ -79,10 +79,11 @@
                 }
             }
 
+            // getStyle(obj,name)用于查找元素的当前样式 为了同时兼容chrome和ie8  obj元素对象 name样式属性名
         function getStyle(elem,prop){
-            if(elem.currentStyle){
+            if(elem.currentStyle){ //IE特有属性
                 return elem.currentStyle[prop];
-            }else{
+            }else{ //DOM标准属性
                 return getComputedStyle(elem,false)[prop];
             }
         }

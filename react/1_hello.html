@@ -12,10 +12,13 @@
     </div>
     <script src="react.development.js"></script>
     <script src="react-dom.development.js"></script>
-    <script src="browser.min.js"></script>    //将es6语法转换成标准的es5
+    <!--将es6语法转换成标准的es5-->
+    <script src="browser.min.js"></script>
+
     <script type="text/babel">
         //jsx
         ReactDOM.render(     //将React元素渲染到DOM节点中
+            // 要有根标签 否则会报错
             <div>
                 <h1>hello world</h1>
                 <p>hello react</p>
@@ -23,12 +26,9 @@
             ,
             document.getElementById('root')
         );
-    
-    
-    
+
     </script>
 
 
-    
 </body>
 </html>

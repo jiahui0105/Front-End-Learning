@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+
+        //如果内部函数调用外部函数的局部变量时  局部变量的值不会释放 可以一直调用
+        //缺点是会造成内存溢出 使用垃圾回收机制
+        //   function f1(){
+        // 　　　　var n=999;
+        // 　　　　nAdd=function(){n+=1}
+        // 　　　　function f2(){
+        // 　　　　　　alert(n);
+        // 　　　　}
+        // 　　　　return f2;
+        // 　　}
+        // 　　var result=f1();  //result为function f2(){alert(n)}
+        // 　　result();        //result执行 输出999
+        // 　　nAdd();         //nAdd为全局变量
+        // 　　result();        //输出1000
+
+        //谁调用this this就指向谁，this是调用执行的时候才指向  es6的箭头函数是定义的时候指向
+        var name = "The Window";
+        var object = {
+            name : "My Object",
+            getNameFunc : function(){
+                return function(){
+                    return this.name;
+                };
+            }
+        };
+        alert(object.getNameFunc()());
+        //输出The Window
+        //object.getNameFunc()返回的是function函数 这时里面的this指向window
+        //My Object是this的定义  The Window才是this执行时候的指向
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text" id="ipt">
+<ul>
+    <li>iphone8</li>
+    <li>iphoneX</li>
+    <li>xiaomi</li>
+    <li>huawei</li>
+</ul>
+<script src="jquery-1.12.4.js"></script>
+<script>
+
+    $(function(){
+
+        $('#ipt').on('keyup',function(){
+            //.val()没有参数代表获取值 有参数代表赋值
+            var value = $(this).val();
+            //跟选项卡一样 每次点击后先取消再添加
+            $('li').css('background','');
+            //所有字符串都包含空字符串。。所以当文本都删除后 还包含空字符串。需进行判断
+            if(value != ''){
+                $('li:contains('+value+')').css('background','red');
+            }
+        });
+
+//        var b = 'bbbbb';
+//        'aaaa'+b+'ccccc';
+        
+    })
+
+
+</script>
+</body>
+</html>

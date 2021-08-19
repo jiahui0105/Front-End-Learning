@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <!--<div id="div1" class="div2">div</div>-->
+    <!--<p>pppppppp</p>-->
+    <!--<h1>hhhhhhh</h1>-->
+    <!--<p>pppppp</p>-->
+
+    <ul id="ul1">
+        <li>001</li>
+        <li>002</li>
+        <li class="li3">003</li>
+        <li>004</li>
+        <li>005</li>
+        <li>3333</li>
+
+        <p></p>
+        <p>ppppppp</p>
+    </ul>
+        <h1>h1hh1h</h1>
+        <h2>hh2h2h2</h2>
+
+        <div>
+            <p>oooo</p>
+        </div>
+        <div>
+            <h1>hhhhhhh</h1>
+        </div>
+
+    <input type="text" value="ttt">
+    <input type="hidden" value="sss">
+
+    <script src="jquery-1.12.4.js"></script>
+    <script>
+
+        $(function () {
+            //:button 选择所有button  还有input textarea等表单元素
+            $(':button');
+            $('input[type="text"]').css('background','red');
+
+            // 链式操作
+         $('.div2 ~ p').css({
+             background:'blue',
+             color:'red',
+             'font-size':40
+         });
+
+            //下标为0的li颜色变红
+            $('#ul1 li:eq(0)').css('background','red');
+            //下标小于2的li
+            $('#ul1 li:lt(2)').css('background','red');
+            //最后一个
+            $('#ul1 li:last').css('background','red');
+            //下标为奇数
+            $('#ul1 li:odd').css('background','red');
+            //所有标题
+            $(':header').css('background','red');
+
+            var a = '.li3';
+          //  变量 变成 字符串
+          $('#ul1 li:not('+ a +')').css('background','red');
+
+          //文本中包含 3 的li
+          $('#ul1 li:contains(3)').css('background','red');
+          //将空的p 中添加文本
+          $('p:empty').html('p1p1p1p1p');
+          //将非空的p换成文本
+          $('p:parent').html('p1p1p1p1p');
+          //过滤div中有p的元素
+          $('div:has(p)').css('background','red');
+
+        });
+
+
+        //文档就绪函数  可写多个
+        $(function(){
+
+            console.log(1111);
+        });
+        $(document).ready(function(){
+            console.log(111);
+        });
+
+
+        window.onload = function(){    //只能写一个onload
+
+            // $('#div1').css('background','red');
+            // var div = document.getElementById('div1');
+
+            //jq对象 -> js原生对象  $obj.get(0)   or  $obj[0]
+            console.log($('#div1')[0]);
+            console.log($('#div1').get(0));
+
+            //js原生对象 -> jq对象   $(obj)
+            console.log($('#div1').css('background','red'));
+
+        }
+
+
+    </script>
+</body>
+</html>

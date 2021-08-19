@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <input type="text" v-model="txt">
+    <input type="password">
+    <!--radio 单选框-->
+    <input type="radio" v-model="sex" value="n">女
+    <input type="radio" v-model="sex" value="m">男
+    <!--checkbox 多选框-->
+    <input type="checkbox" v-model="sport" value="足球">足球
+    <input type="checkbox" v-model="sport" value="篮球">篮球
+    <input type="checkbox" v-model="sport" value="乒乓球">乒乓球
+
+    <!--multiple="multiple"多选-->
+    <select name="" id=""  v-model="sel">
+        <option value="apple">apple</option>
+        <option value="orange">orange</option>
+        <option value="banana">banana</option>
+        <option value="pear">pear</option>
+    </select>
+</div>
+<script src="vue.js"></script>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            txt:'xx',
+            //''里是选中的那个value
+            sex:'n',
+            sport:['足球'],
+            sel:'apple'
+        }
+    })
+</script>
+</body>
+</html>

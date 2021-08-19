@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var user=[
+        {id:1,name:'a'},
+        {id:2,name:'b'},
+        {id:3,name:'a'},
+        {id:4,name:'b'}
+    ];
+
+    //实现输出ab
+    Array.prototype.unique = function(){
+        var temp = [];
+        for(var i =0;i<this.length;i++){
+            if(temp.indexOf(this[i].name)==-1){
+                temp.push(this[i].name);
+            }
+        }
+        return temp
+    };
+
+    console.log(user.unique());  //输出ab
+</script>
+</body>
+</html>

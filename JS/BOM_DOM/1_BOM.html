@@ -12,85 +12,97 @@
 </head>
 <body>
 <form action="xxx.html">
+    <!--获取焦点label-->
     <label for="div1">用户名：</label>
     <input id="div1" type="text" name="username">
     <label for="pwd">密码：</label>
     <input id="pwd" type="password" name="password">
 
-</form>
-<button id="btn">取消</button>
-<a href="back.html">链接</a>
+<!--</form>-->
+<!--<button id="btn">取消</button>-->
+<!--<a href="back.html">链接</a>-->
 <script>
-//        var oDiv = document.getElementById('div1');
-//        div1.focus();
+       var oDiv = document.getElementById('div1');
+       div1.focus();
     
-//    btn.onclick = function () {
-//        history.forward();
-//    }
+   btn.onclick = function () {
+       history.forward();
+   }
 
+//      判断窗口位置
+   console.log(window.screenLeft || window.screenX);
+   console.log(window.screenTop || window.screenY);
 
-//    console.log(window.screenLeft || window.screenX);
-//    console.log(window.screenTop || window.screenY);
-//    console.log(window.innerWidth);
-//    console.log(window.innerHeight);
-//        console.log(window.outerHeight);
-//    var w = open('http://www.baidu.com','','width=300,height=200,left=200,top=200');
+//      判断视口的大小
+   console.log(window.innerWidth);
+   console.log(window.innerHeight);
+
+//      浏览器自身窗口的大小
+        console.log(window.outerWidth);
+       console.log(window.outerHeight);
+   var w = open('http://www.baidu.com','','width=300,height=200,left=200,top=200');
     self.moveBy(300,100);
-//    w.moveTo(300,100);
-//    w.resizeBy(400,200);
-//    w.resizeTo(400,200);
-//    scrollTo(300,400);
-//    scrollBy(300,400);
+   w.moveTo(300,100);
+   w.resizeBy(400,200);
+   w.resizeTo(400,200);
+   scrollTo(300,400);
+   scrollBy(300,400);
 
-//    var xx = confirm('确认删除吗');
-//    if(xx){
-//        console.log('删除成功');
-//    }else{
-//        console.log('已取消');
-//    }
+   var xx = confirm('确认删除吗');
+   if(xx){
+       console.log('删除成功');
+   }else{
+       console.log('已取消');
+   }
 
 
-//    var timer = setTimeout(function(){
-//        console.log('111111');
-//        console.log(2222);
-//    },2000);
-//    console.log(timer);
+   var timer = setTimeout(function(){
+       console.log('111111');
+       console.log(2222);
+   },2000);
+   console.log(timer);
+
+
+   var timer1 = setTimeout(function(){
+       console.log('sxxxx');
+       console.log('xxxx');
+   },2000);
+   console.log(timer1);
+
+   clearTimeout(timer1);
+
+   var timer = setInterval(function(){
+       console.log(1);
+   },1000);
+
+   btn.onclick = function(){
+       clearInterval(timer);
+   };
+
+
+   btn.onclick = function(){
+//        location.href = 'back.html';
+       console.log(navigator.userAgent);
+   }
 //
-//
-//    var timer1 = setTimeout(function(){
-//        console.log('sxxxx');
-//        console.log('xxxx');
-//    },2000);
-//    console.log(timer1);
-//
-//    clearTimeout(timer1);
-//
-//    var timer = setInterval(function(){
-//        console.log(1);
-//    },1000)
-//
-//    btn.onclick = function(){
-//        clearInterval(timer);
-//    }
-
-
-//    btn.onclick = function(){
-////        location.href = 'back.html';
-//        console.log(navigator.userAgent);
-//    }
-
 //    Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36
 
 //    Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X)
 
-//    console.log(window.location.host);
+    // location对象：返回主机名或当前url的端口号
+   console.log(window.location.host);
 
-//    str.indexOf('abc')
-//        if(navigator.userAgent.indexOf('iPhone') > -1){
-//            location.href = 'http://m.taobao.com';
-//        }else{
-//            location.href = 'http://www.taobao.com';
-//        }
+
+var str = 'abcdefg';
+   str.indexOf('abc')
+// 输出下标0，若没有该字符串 则输出下标-1
+
+// navigator对象
+       if(navigator.userAgent.indexOf('iPhone') > -1){
+           location.href = 'http://m.taobao.com';
+       }else{
+           location.href = 'http://www.taobao.com';
+       }
 
 
 

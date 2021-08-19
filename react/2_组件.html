@@ -16,6 +16,7 @@
     <script type="text/babel">
         //无状态组件
         let Welcome = (props) =>{
+            // children取到标签内xixixi
             return (
                 <div>
                     <h1>{props.name}</h1>
@@ -23,19 +24,17 @@
                     <p>{props.children}</p>
                 </div>
             );
-        }
+        };
         //jsx
         ReactDOM.render(
             <div>
                 <Welcome name="我是name1" description="这里是description1">xixixi</Welcome>
-                <Welcome name="我是name2" description="这里是description2"hahaha></Welcome>
+                <Welcome name="我是name2" description="这里是description2">hahaha</Welcome>
             </div>
             ,
             document.getElementById('root')
         );
-    
-    
-    
+
     </script>
 
 

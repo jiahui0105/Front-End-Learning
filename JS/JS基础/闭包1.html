@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //函数中用var声明的变量是局部变量 没有var声明则是全局变量
+    //闭包可理解为函数嵌套 在内部函数中调用外部函数的变量，即当前作用域中没有该变量 则去上一级中找
+    function foo(){
+        var b = 11;
+        function foo2(){
+            //有返回值才能输出  没有返回值则输出undefined
+            return b
+        }
+        return foo2;
+    }
+    console.log(foo()());
+
+    // console.log(b);
+
+</script>
+</body>
+</html>

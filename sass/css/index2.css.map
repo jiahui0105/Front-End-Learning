@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AACA,KAAK;EACH,UAAU,EAFL,IAAI;EAGT,KAAK,EAHA,IAAI",
+"sources": ["../style/index2.scss"],
+"names": [],
+"file": "index2.css"
+}

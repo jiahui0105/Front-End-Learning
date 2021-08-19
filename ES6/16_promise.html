@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="jquery-1.12.4.js"></script>
+<script>
+
+    //回调嵌套  callback cell
+       $.get('a.json',function(d1){
+           console.log(d1.a);
+           var t = d1.teacher;
+           $.get('b.json',{name:t},function(d2){
+               console.log(d2.b);
+               $.get('c.json',{name:t},function(d3){
+                   console.log(d3.c);
+               });
+           });
+       });
+
+//回调嵌套太麻烦 用promise。。promise是帮助管理异步操作的。
+    // 两个特点 一是 对象的状态不受外界影响。二是 一旦状态改变，就不会再变，任何时候都可以得到这个结果
+
+       var f1 = function () {
+           //resolve成功 reject失败 p：promise对象
+           var p = new Promise(function(resolve,r){
+               setTimeout(function(){
+                   resolve(11111);//resolve() 表示调用成功状态的promise对象
+               },1000);
+           });
+           return p;
+       };
+
+       var f2 = function () {
+           var p = new Promise(function(resolve,r){
+               setTimeout(function(){
+                   resolve(222222);
+               },1000);
+           });
+           return p;
+       };
+
+       var p = new Promise(function(resolve,reject){
+               console.log('0000');// 1.刚开始定义了一个promise对象   输出0000
+               setTimeout(function(){
+                   resolve(2222);//2.模拟异步操作 返回成功状态的promise对象 参数是2222
+               },1000);
+       });
+
+    //then用在promise之后 两个函数 若返回的promise是成功状态的 则调用第一个函数，失败状态调用第二个函数
+       p.then((data)=>{
+           console.log(data);//3.调用成功状态的对象 输出data是2222
+           return f1(); //4.调用f1 f1返回的是成功状态的promise对象 参数是11111
+       }).then((data)=>{
+               console.log(data);//5.调用成功状态的对象              输出data是11111
+               return f2();//6.调用f2
+           }).catch(()=>{
+               //catch可以拿到以上所有then的失败函数。以上两个then都没有第二个失败函数 则失败时执行catch。
+           // 若带有自己的失败函数 则执行自己的
+       });
+
+
+    // -----------------------------------------
+
+
+      var p = new Promise(function(resolve,reject){
+           setTimeout(function(){
+               resolve(11111);
+           },3000)
+       });
+
+       p.then((data)=>{
+           console.log(data);
+           return new Promise(function(resolve,reject){
+               setTimeout(function(){
+                   resolve(2222);
+               },1000);
+           });
+       // },function(){
+    }).then((data)=>{
+           console.log(data);
+       });
+       console.log('sssssssssss');//先输出s   setTimeout是异步操作 有延迟
+
+
+    //all
+
+       var p1 = new Promise(function(resolve,reject){
+           setTimeout(function(){
+    //            console.log(1111111);
+               resolve(11111);
+           },3000)
+       });
+       var p2 = new Promise(function(resolve,reject){
+           setTimeout(function(){
+               // resolve(222);
+               reject(222);
+           },200)
+       });
+       var p3 = new Promise(function(resolve,reject){
+           setTimeout(function(){
+    //            console.log(3333);
+               resolve(333);
+           },100)
+       });
+
+       var p = Promise.all([p1,p2,p3]); //拿到了三个对应的返回值 跟'执行最长时间11111'的一起返回
+       p.then((data)=>{
+           console.log(data);
+       },(data)=>{
+           console.log(data+'fail'); //p2失败 直接返回失败函数222fail  then的第一个方法不执行。。但是p1和p3 仍会执行
+           //p1 p2 p3 多个都失败 则返回第一个最快失败的
+       });
+
+
+    //竞速。。同时发很多请求 返回最快的 提高速度
+
+    var p = Promise.race([p1,p2,p3]);//最快的成功了就返回成功 最快的失败了就返回失败，和其他的没关系
+    p.then((data)=>{
+        console.log(data);//成功
+    },(data)=>{
+        console.log(data+'fail');//失败
+    });
+
+
+    //all改用ajax的话会很麻烦
+       var num = 0;
+       setTimeout(function(){
+           num++;
+           console.log('success');
+           //除了用间隔函数，还可以在每个setTimeout函数里面判断一下 num是否==3
+           // if(num == 3){
+           //     console.log('success');
+           // }
+       },1000);
+
+       setTimeout(function(){
+           num++;
+           console.log('success');
+           // if(num == 3){
+           //     console.log('success');
+           // }
+       },2000);
+
+       setTimeout(function(){
+           num++;
+           console.log('success');
+           // if(num == 3){
+           //     console.log('success');
+           // }
+       },3000);
+       //setTimeout是异步 有延迟 需设置间隔函数 每隔一段时间就轮一下
+       var timer = setInterval(function(){
+           if(num == 3){
+               console.log('success');//到3s输出
+               clearInterval(timer);
+           }
+       },50);
+
+
+       // ----------------------------
+
+       setTimeout(function(){
+           console.log('666666');
+       },1000);
+       console.log('9999999');
+
+       var p = new Promise(function(resolve,reject){
+           //模拟异步 异步最主要的概念就是不能阻止后面代码的执行
+           setTimeout(function () {
+               console.log('11111');
+               resolve(22222);//成功
+    //            reject('fail');//失败
+           },0);
+           console.log(33333);
+       });
+       //异步
+       p.then(function(d){
+           //成功执行
+           console.log(d);
+           return  new Promise(function(s,r){
+               setTimeout(function(){
+                   console.log(8888);
+                   s(555);
+               },1000)
+           })
+           //若没有异步操作 也可直接返回
+           // return Promise.resolve('success');
+           // return Promise.reject('fail');
+       }).then(function(s){
+           console.log(s);
+       });
+       console.log(7777);
+
+//输出顺序 9 3 7 1 2 6 8 5
+
+</script>
+</body>
+</html>

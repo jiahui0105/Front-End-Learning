@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <demo1 x-m-sg="123" :yy="m1">
+        <p slot="p1">ppppppppppp</p>
+        <p slot="p2">p2p2p2p2p2p</p>
+    </demo1>
+
+    <demo1 x-m-sg="456" :yy="m2"></demo1>
+    {{msg}}
+</div>
+<script type="text/x-template" id="temp">
+    <div>
+        {{XMSg}}
+        <!--在组件中间加元素 需要说明加在哪里 用slot-->
+        <!--如果html中没传slot内容 则显示默认的，若传值 则显示传的内容-->
+        <slot name="p1">
+            <p>我是默认的p1p1p1p1p1p1p</p>
+        </slot>
+
+        <h1>{{yy}}</h1>
+
+        <slot name="p2">
+            <span>我也是默认的</span>
+        </slot>
+
+        <slot>
+
+        </slot>
+
+    </div>
+</script>
+<script src="vue.js"></script>
+<script>
+    //全局组件
+    //    Vue.components('demo',{
+    //        template:"<div>didv1 <h1>hhhhhhhh</h1></div>"
+    //    });
+
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            msg:'xx',
+            m1: 'haha',
+            m2: 'hehe'
+        },
+        //局部组件
+        components:{
+            demo1:{
+                template:"#temp",
+                props:['XMSg','yy']
+            }
+        }
+    })
+
+    //    new Vue({
+    //        el:'#app2',
+    //        components:{
+    //            demo:{
+    //                template:"<div>didv1 <h1>hhhhhhhh</h1></div>"
+    //            }
+    //        }
+    //    })
+
+
+</script>
+</body>
+</html>
