@@ -4,6 +4,14 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
+        /*
+        元素浮动后会脱离文档流 造成父元素塌陷
+            解决办法：
+                1.父元素设置高度
+                2.给父元素加溢出隐藏
+                3.给父元素加伪元素并清除浮动::after{content: '';clear: both;display: block;}
+                4.在父元素内的最后加一个空的子元素并清除浮动clear:both
+        */
         #div1{
             background: #cccccc;
         }

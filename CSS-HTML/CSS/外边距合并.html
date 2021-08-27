@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
+        /*
+        元素在同一方向上设置外边距 两个会合并，距离会取外边距大的那一个
+            解决办法：
+                    并列关系：兄弟元素只给一个元素加外边距
+                    嵌套关系：1.父元素加溢出隐藏overflow:hidden
+                              2.给父元素加border
+                              3.给父元素或子元素加浮动float: left
+                              4.给父元素或子元素设置绝对定位 position:absolute
+        */
         #div1{
             height: 200px;
             width: 200px;
