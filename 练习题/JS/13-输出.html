@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--
+     页面上输出如下图案(其中，每行的星号"*"之间有⼀一个空格间隔)
+    *
+   * *
+  * * *
+ * * * *
+* * * * *
+....*
+...* *
+..* * *
+.* * * *
+* * * * *
+  -->
+<script>
+    // 循环每一行
+    for(var i=1;i<=5;i++) {
+        // 循环输入每一行的空格
+        for(var k=5-i;k>0;k--) {
+            document.write('&nbsp');
+        }
+        // 每一行从第一个*开始输出
+        for(var j=1;j<=i;j++) {
+            document.write('*'+' ');
+        }
+        document.write('</br>');
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>阶乘</title>
+</head>
+<body>
+<script>
+    <!-- 计算10!(即 1*2*3*...10)的结果(10的阶乘) -->
+
+    // 方法一
+    function fac() {  //计算阶乘
+        // let 定义变量的关键字
+        let n = prompt("计算n的阶乘：");
+        n = parseInt(n); // 将拿到的值转换成number类型
+        let sum = 1;
+        for(let i = 1; i <= n; i++) {
+            sum *= i;
+        }
+        alert( n + "的阶乘是：" + sum);
+    }
+    fac();
+
+    // 方法二 递归调用
+    function fun(n){
+        if(n==1) {
+            return 1;
+        } else {
+            return n*fun(n-1); // 10*fun(9) / 10*9*fun(8)
+        }
+    }
+    console.log(fun(10));
+</script>
+</body>
+</html>

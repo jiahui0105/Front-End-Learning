@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--使用Math对象的random()方法编制⼀个产生0~100之间（含0,100）的随机整数的函数。-->
+<script>
+    function fun(){
+        // random[0~1)不包含1
+        var num=Math.random()*101;
+        num=parseInt(num);
+        console.log(num);
+    }
+    fun();
+
+    //方法二
+    console.log(Math.floor(Math.random()*101));
+</script>
+</body>
+</html>

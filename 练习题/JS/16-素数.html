@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--输出100~1000之间的所有素数（只能被1和本身整除），并要求每行显示6个素数。-->
+<script>
+    var index = 1;
+    for (var x = 100; x < 1001; x++) {
+        // 从2开始判断是否能被整除，如果能被整除就不是素数跳出循环
+        for (var i = 2; i < x; i++) {
+            if (x % i == 0)
+                break;
+        }
+        if (i >= x) {//没有可以整除的i
+            document.write(x + ' ');
+            index = index + 1;
+        }
+        // index 计算每行输出6个
+        if (index == 7) {
+            document.write('</br>');
+            index = 1;
+        }
+    }
+</script>
+</body>
+</html>

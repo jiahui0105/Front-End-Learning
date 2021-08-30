@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>在页面中实现一个正方形</title>
+    <style>
+        #square {
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+
+        #test {
+            width: 0;
+            height: 0;
+            border: 50px solid hotpink;
+            border-left-color:blue;
+            border-right-color:red;
+            border-bottom-color:green;
+        }
+
+        #container{
+            width: 100px;
+            padding-top: 100px;
+            background: aqua;
+        }
+
+        #main{
+            /*块级元素如果不设置宽度的话会充满父元素*/
+            width: 0;
+            height: 100px;
+            padding-left: 100px;
+            background: aquamarine;
+        }
+    </style>
+</head>
+<body>
+    <div id="square"></div>
+
+    <div id="test"></div>
+
+    <div id="container"></div>
+
+    <div id="main"></div>
+</body>
+</html>

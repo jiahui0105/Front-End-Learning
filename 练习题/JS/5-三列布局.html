@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>左右两侧内容宽度为100px，中间宽度为⾃适应</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        .left{
+            width: 100px;
+            height: 200px;
+            background-color: rgb(99, 231, 99);
+            float: left;
+        }
+        .right{
+            width: 100px;
+            height: 200px;
+            background-color: blue;
+            float: right;
+        }
+        .center{
+            width: 100%;
+            height: 200px;
+            background-color: red;
+            margin: 0 100px;
+        }
+
+        /*---------------------------*/
+        .left{
+            width: 100px;
+            height: 100px;
+            background: aquamarine;
+            /*top left等需要配合position才可使用*/
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .center{
+            height: 100px;
+            margin:  0 100px;
+            background: bisque;
+        }
+        .right{
+            width: 100px;
+            height: 100px;
+            background: greenyellow;
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+    <!--两列布局/三列布局自适应
+            通过释放某些元素所占用的空间来实现的，浮动和绝对定位来实现释放元素本身占用的空间，注意html中元素的顺序-->
+
+    <!-- 浮动方式实现 html顺序是左右中 -->
+    <div class="container">
+        <div class="left">left</div>
+        <div class="right">right</div>
+        <div class="center">center</div>
+    </div>
+
+    <!-- 通过定位实现 html顺序是左中右-->
+    <!-- <div class="container">
+      <div class="left">left</div>
+      <div class="center">center</div>
+      <div class="right">right</div>
+    </div> -->
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #container1{
+            /*
+              box-sizing
+                content-box：标准盒模型
+                  元素实际width = width + padding + border
+                border-box：怪异盒模型
+                  元素实际width = width
+             */
+            box-sizing:border-box;
+            width: 200px;
+            height: 200px;
+            padding: 10px;
+            background-color: plum;
+        }
+        #container2{
+            width: 200px;
+            height: 200px;
+            padding: 10px;
+            background-color: palevioletred;
+        }
+
+        button{
+            width: 100px;
+            height: 50px;
+            background: violet;
+        }
+    </style>
+</head>
+<body>
+    <!--在页面中绘制两个200*200的正方形，⼀个满足加入padding:10px后整体宽度仍是200px，另⼀个加入padding:10px的时候整体宽度为220px;-->
+
+    <!--button展现方式是怪异盒模型-->
+    <button>12345</button>
+
+    <!-- 怪异盒模型 -->
+    <div id="container1">怪异盒模型 200</div>
+    <!-- 标准盒模型 -->
+    <div id="container2">标准盒模型 220</div>
+</body>
+</html>

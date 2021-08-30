@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>左边固定200像素宽，右边自适应</title>
+    <style>
+        #content-left{
+            width: 200px;
+            height: 200px;
+            background-color: blue;
+            float: left;
+        }
+        #content-right{
+            width: 100%;
+            height: 200px;
+            /* margin-left: 200px; */
+            padding-left: 200px;
+            background-color: red;
+        }
+
+        #left{
+            width: 200px;
+            height: 200px;
+            background: aquamarine;
+            position: absolute;
+        }
+        #right{
+            margin-left: 200px;
+            height: 200px;
+            background: yellowgreen;
+        }
+    </style>
+</head>
+<body>
+    <!-- 方法一 -->
+    <div id="content-left"></div>
+    <div id="content-right"></div>
+
+    <!-- 方法二 -->
+    <div id="left"></div>
+    <div id="right"></div>
+</body>
+</html>
