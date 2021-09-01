@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--
+      给谁绑定了事件、方法，谁就是this
+      1.在普通函数里 this->window
+      2.在自定义的对象里 this->当前对象obj var obj={}
+      3.在定时器里 setTimeout this->window
+      4.在类中 this->实例化对象
+      5.在事件处理函数里 this->绑定该事件的dom对象
+   -->
+    <div>
+        <p>123</p>
+    </div>
+<script>
+    var a = 1;
+
+    function fun() {
+        console.log(this) // window
+    }
+    // fun()
+
+    var person = {
+        name: 'zs',
+        age: 18,
+        coding: function () {
+            console.log(this) // person
+        }
+    };
+    // person.coding()
+
+    // setTimeout(function () {
+    //   console.log('setTimeout:', this) // window
+    // }, 0)
+
+    function Student(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+    Student.prototype.coding = function () {
+        console.log('类：',this) // s1 ->实例化对象
+    };
+    var s1 = new Student('zs', 18);
+    // s1.coding()
+
+
+    var oDiv = document.getElementsByTagName('div')[0];
+    oDiv.onclick = function(){
+        console.log(this) // <div><p>123</p></div>
+    };
+
+    var oP = document.getElementsByTagName('p')[0];
+    // oP.onclick = function(){
+    //     console.log(this) // <p>123</p>
+    // };
+    function fun1(a,b){
+        console.log(a,b);
+        console.log(this);
+    }
+    // fun1(1,2)  // window
+
+    // call 改变this指针 支持传入多个参数。第一个参数表示要改变的指针，后面的参数表示原本函数需要的传参。会自动触发方法
+    // fun1.call(oP,1,2)
+
+    // apply 改变this指针 支持传入两个参数。第一个参数表示要改变的指针，第二个参数是一个【数组】（表示原数组需要的传参）。会自动触发方法
+    // fun1.apply(oP,[3,4])
+
+    // bind 改变this指针 支持传入多个参数。第一个参数表示要改变的指针，后面的参数表示原本函数需要的传参。【不会自动触发】
+    fun1.bind(oP,1,2)()
+
+</script>
+
+</body>
+</html>
