@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--
+    节点类型
+    Node.ELEMENT_NODE (1) 元素节点
+    Node.ATTRIBUTE_NODE (2) 属性节点
+    Node.TEXT_NODE (3) 文本节点
+    Node.COMMENT_NODE (8) 注释节点
+-->
+
+<!--Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)-->
+<div>
+    <a href="#">
+        123
+    </a>
+</div>
+
+<ul>
+    <li id="first">1</li>
+    <li>2</li>
+    <li>3</li>
+    <li id="last">4</li>
+</ul>
+
+<script>
+    var oDiv = document.getElementsByTagName('div')[0];
+    console.log(oDiv);
+
+    var oA = document.getElementsByTagName('a')[0];
+
+    // nodeName节点名称
+    // 普通的节点返回的节点名称就是标签名称 <div> DIV
+    // 文本节点返回的节点名称就是#text
+    console.log(oDiv.nodeName);
+
+    // nodeType 节点类型
+    console.log(oDiv.nodeType);
+
+    console.log(oA.nodeName, oA.nodeType);
+
+    var oUl = document.getElementsByTagName('ul')[0];
+
+    // firstChild 获取第一个子节点（回车换行、文本都属于子节点都会被获取到）
+    console.log(oUl.firstChild);
+    console.log(oA.firstChild);
+
+    // lastChild 获取最后一个子节点 也可能获取到的是回车换行。。。
+    console.log(oUl.lastChild);
+
+    // nextSibling 封装两个方法
+    var oFirst = document.getElementById('first');
+    console.log(oFirst.nextSibling); //获取下一个兄弟节点 可能会获取到\n
+
+    //1. 封装一个next方法获取下一个兄弟（元素节点）
+    function next(elem) {
+        do{
+            elem = elem.nextSibling
+        }while(elem.nodeType!==1);
+        return elem
+    }
+    console.log(next(oFirst));
+    /*
+      nextSibling 指向后一个兄弟节点 在IE浏览器里返回的是元素节点 在标准浏览器（谷歌、火狐。。）会返回文本节点（回车换行）
+      nextElementSibling 指向后一个兄弟元素节点 只适用于标准浏览器
+    */
+    console.log(oFirst.nextElementSibling);
+
+    //2.不同浏览器的兼容
+    // 封装一个方法获取下一个兄弟元素节点
+    function new_next(elem) {
+        var ua = navigator.userAgent;
+        if(ua.indexOf('MSIE')==-1) {//没找到则是非ie浏览器 返回-1
+            elem = elem.nextElementSibling
+        } else {//找到的话则是ie浏览器返回位置
+            elem = elem.nextSibling
+        }
+        return elem
+    }
+    console.log(new_next(oFirst));
+
+
+    // previousSibling
+    var oLast = document.getElementById('last');
+    console.log(oLast.previousSibling);//#text data:\n
+    console.log(oLast.previousElementSibling);//li
+    /*
+      previousSibling 指向前一个兄弟节点 IE中会返回前一个兄弟元素节点 标准浏览器中会返回回车换行
+      previousElementSibling 指向前一个兄弟元素节点 在标准浏览器中适用
+    */
+    function pre(elem) {
+        do{
+            elem = elem.previousSibling
+        }while(elem.nodeType !==1);
+        return elem
+    }
+    console.log(pre(oLast));
+
+
+
+    //找到第一个元素节点
+    function first(elem){
+        elem = elem.firstChild;
+        if(elem.nodeType !== 1) {
+            elem = next(elem)
+        }
+        return elem
+    }
+    console.log(first(oUl));
+
+    //找到最后一个元素节点
+    function last(elem){
+        elem = elem.lastChild;
+        if(elem.nodeType !== 1) {
+            elem = pre(elem)
+        }
+        return elem
+    }
+
+
+
+</script>
+
+</body>
+</html>

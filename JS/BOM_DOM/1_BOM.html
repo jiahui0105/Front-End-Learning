@@ -27,7 +27,7 @@
     
    btn.onclick = function () {
        history.forward();
-   }
+   };
 
 //      判断窗口位置
    console.log(window.screenLeft || window.screenX);
@@ -83,10 +83,9 @@
    btn.onclick = function(){
 //        location.href = 'back.html';
        console.log(navigator.userAgent);
-   }
-//
+   };
+//      navigator获取浏览器的相关信息 返回字符串
 //    Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36
-
 //    Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X)
 
     // location对象：返回主机名或当前url的端口号
@@ -94,7 +93,7 @@
 
 
 var str = 'abcdefg';
-   str.indexOf('abc')
+   str.indexOf('abc');
 // 输出下标0，若没有该字符串 则输出下标-1
 
 // navigator对象

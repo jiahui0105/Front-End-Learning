@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="wrapper">
+        <h1>12345</h1>
+        <a href="#">122334</a>
+    </div>
+
+<script>
+    // createElement 创建元素
+    var oP = document.createElement('p');
+    oP.innerText = 'hello';
+    console.log(oP);
+
+    // appendChild插入节点 插入到最后
+    var oDiv = document.getElementsByTagName('div')[0];
+    oDiv.appendChild(oP);
+    console.log(oDiv);
+
+    var oA = document.getElementsByTagName('a')[0];
+    var oSpan = document.createElement('span');
+    oSpan.innerText = 'span';
+
+    /**
+     * insertBefore(newnode,refnode) 在某元素之前插入一个元素
+     * newnode 新节点（要插入的节点）
+     * refnode 目标节点（插入到这个节点之前）
+     */
+    oDiv.insertBefore(oSpan,oA);
+
+    // removeChild删除一个节点
+    oDiv.removeChild(oP);
+
+    var oH = document.createElement('h2');
+    oH.innerText = 'hello world';
+
+    /*
+      replaceChild(newnode,oldnode) 替换节点
+      newnode新的节点
+      oldnode 被替换的节点
+    */
+    oDiv.replaceChild(oH, oA);
+
+    /*
+      setAttribute()给元素设置属性 可以直接在页面的标签上看到这个属性
+      oDiv.属性 可以给元素设置属性 但是我们不能直接在页面中看到这个属性
+    */
+    oDiv.setAttribute('index',1);
+    oDiv.tag = 1;
+    console.log(oDiv.tag);//1
+
+    // getAttribute 获取元素的属性
+    console.log(oDiv.getAttribute('index'));//1
+    console.log(oDiv.getAttribute('id'));//wrapper
+
+    // removeAttribute 删除元素属性
+    oDiv.removeAttribute('index')
+
+
+
+</script>
+</body>
+</html>

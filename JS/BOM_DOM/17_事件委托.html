@@ -20,14 +20,16 @@
     var oBtn = document.getElementById('add');
     var oUl = document.getElementById('ul1');
 
-    //事件委托   或者  事件代理：把子元素的事件委托给父元素
+    //事件委托   或者  事件代理：动态添加的元素（后生成的元素）不能直接绑定事件，需要给已存在的父元素绑定一个事件
+
     // 优点1：定义函数只定义一次 然而for循环会执行多次 浪费空间
     oUl.onclick = function(e){
-        // e.target获取真正点击触发的事件源 e.currentTarget当前事件绑在Ul上 则捕获Ul
-        console.log(e.target.innerHTML);
-        // console.log(e.currentTarget.innerHTML);
+        // console.log(this);//在事件处理函数里 this->绑定该事件的dom对象 即Ul
+        console.log(e.target.innerHTML);// e.target获取真正点击触发的事件源 即li
+        // console.log(e.currentTarget.innerHTML);// e.currentTarget当前事件绑在Ul上 则捕获Ul
         // e.stopPropagation();
-    }
+    };
+
     //        for(var i=0;i<aLi.length;i++){
     //            aLi[i].onclick = function(){
     //                console.log(this.innerHTML);
