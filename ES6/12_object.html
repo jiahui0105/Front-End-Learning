@@ -7,7 +7,41 @@
 <body>
 <script>
 
-   var n = 'xxxx';
+    /*
+        • 属性简洁表示法（属性名、方法简写）
+            1.如果对象中某个属性的值用变量表示，并且这个变量名与对应的属性值的名相同，就可以简写
+            2.对象中定义的方法，可以省略:function
+        • 属性名表达式 [key]
+        • Object.is( )：判断两个值是否严格相等，与 === 的行为基本一致
+                +0 === -0 NaN === NaN
+        • Object.assign( target，…sources)：对象合并，浅拷贝
+        • in：判断对象是否包含某个属性
+        • 对象的遍历方式
+            • for…in
+            • Object.keys( )
+            • Object.values( )
+            • Object.entries( )
+    */
+
+    // let p1 = {
+    //   name: 'zs',
+    //   age: 18,
+    //   showName: function(){
+    //     console.log('my name is' + this.name)
+    //   }
+    // }
+
+    // let name = 'lilei';
+    // let p1 = {
+    //     // 属性叫name: 属性值是上面的变量name
+    //     name,
+    //     // 对象下的方法简写
+    //     showName() {
+    //         console.log('my name is' + this.name)
+    //     }
+    // };
+
+    var n = 'xxxx';
    var str = 'my';
    var myName = 'sssssss';
 
@@ -29,7 +63,13 @@
        a:o1,
        b:2
    };
-   //assign合并对象 obj返回新的对象
+    /*
+       Object.assign(target, ...source) 进行对象的合并
+         是一个浅拷贝的过程
+         会将n个source对象合并到target对象上
+         如果source中的属性与target中的属性相同，target中属性会被覆盖
+         如果不想对现有对象进行改变可以在调用方法时 target是一个{}
+     */
    console.log(Object.assign(obj,{c:3,b:5},{d:4}));
    obj.a.age = 15;
    console.log(obj,o1);
@@ -53,6 +93,26 @@
         return -1;
     };
     console.log(arr.io(NaN));
+
+    let person = {
+        name: 'zs',
+        age: 18,
+        school: 'beida'
+    };
+
+    // in 判断对象中是否有某个属性 返回Boolean
+    // console.log('name' in person) // true
+    // console.log('color' in person) // false
+
+    // Object.keys(obj) 返回obj对象中的属性名 返回的是一个数组
+    console.log(Object.keys(person));// ["name", "age", "school"]
+
+    // Object.values(obj) 返回obj对象中所有的属性值，返回一个数组
+    console.log(Object.values(person)); // ["zs", 18, "beida"]
+
+    // Object.entries(obj) 将obj中的key,value 以 [[key,value],[key,value]]形式返回
+    console.log(Object.entries(person));// [['name','zs'],['age',18],['school','beida']]
+
 
 
 </script>

@@ -7,6 +7,18 @@
 <body>
 <script>
 
+    /*一些方法移植到Number对象上面，行为完全保持不变。这样做的目的，是逐步减少全局性方法，使得语言逐步模块化。
+        • Number
+            • Number.isFinite( ) 检查一个数值是否为有限的
+            • Number.isNaN( ) 检查一个值是否为NaN
+            • Number.parseInt( ) 返回一个整数,如果不是整数返回NaN,
+                        如果传入的字符串中既有数字又有其他类型的，从左向右依次转换，直到第一位不能转换为止，后面全都舍弃掉
+            • Number.parseFloat( ) 返回一个浮点数（number类型的数）
+            • Number.isInteger( ) 判断一个数值是否为整数
+        • Math
+            • Math.trunc( ) 去除一个数的小数部分，返回整数部分
+            • Math.sign( ) 判断一个数到底是正数、负数、还是零,返回 1 -1 0 (0 返回结果是0 /  -0返回的是-0)
+    */
    var str = '113bcc';
    console.log(parseInt(str));
 

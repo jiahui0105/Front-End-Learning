@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let obj = {
+        name: 'zs',
+        age: 18,
+        //id表示一个私有属性 对象的函数内部可以访问，不可以直接通过对象访问
+        _id: 123,
+        changeID(){
+        //    id
+        }
+    };
+    /*
+    proxy用于修改某些操作的默认行为 let proxy = new Proxy(target,handler)
+    常用的拦截方法：
+            get(target,key,property)拦截某个属性的读取操作  target拦截对象 key拦截的属性 property是一个proxy对象
+            set(target,key,value)拦截某个属性的赋值操作  target拦截对象 key设置的属性 property设置属性对应的值
+    应用：可以实现对象中的私有变量
+    */
+    let p1 = new Proxy(obj,{
+        get(target,key,property) {
+            console.log('get');
+            // console.log(target,key,property);
+
+            if(key.startsWith('_')) {
+                console.log('error! 私有属性不可以访问');
+                return false
+            } else {
+                return target[key];
+            }
+        },
+        set(target,key,value) {
+            console.log('set');
+            // console.log(target,key,value);
+
+            if(key.startsWith('_')) {
+                console.log('error! 私有属性不可以设置');
+                return false
+            } else {
+                target[key] = value;
+            }
+        }
+    });
+    // console.log(p1.name);   //zs
+    // p1.name = 'xm';
+    // console.log(p1);
+
+    p1._id = 111;
+</script>
+</body>
+</html>
