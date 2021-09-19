@@ -16,20 +16,20 @@
 //对数组去重
 
        //第四种方法 set
-       var arr = [1,2,32,3,4,5,3,2];
+       var arr = [1,2,3,2,3,4,5,3,2];
        var s = new Set(arr);
        console.log( Array.from(s) );//把类似于数组的结构转化成数组
 
-       var arr = [1,2,2,32,3,4,5,3,2];
+       var arr = [1,2,2,3,2,3,4,5,3,2];
        var obj = {};
        var newArr = [];
        for(var i=0;i<arr.length;i++){
            //第二种方法
-//            if(!obj[arr[i]]){
-//                newArr.push(arr[i]);
-//                obj[arr[i]] = true;
-//            }
-           obj[arr[i]] = true; //第一种直接方法
+           if(!obj[arr[i]]){
+               newArr.push(arr[i]);
+               obj[arr[i]] = true;
+           }
+           // obj[arr[i]] = true; //第一种直接方法
        }
        console.log(newArr);
 
@@ -52,12 +52,13 @@
        console.log(newArr);
 
 
-       set.delete("123");
-       set.clear();//清除
+       console.log(set.delete("123"));  //返回一个boolean 表示是否删除成功
+       console.log(set.has("123"));  //false  返回一个Boolean 表示该值是否为set的成员
+       // set.clear();//清除所有成员，没有返回值
        console.log(set.size);//长度
 
 
-       //以下四种 循环每一个里面的值
+       //以下四种 循环遍历每一个里面的值  forEach keys values entries
        for(var k of set){
            console.log(k);
        }

@@ -7,7 +7,7 @@
 <body>
 <script>
 
-    var m = new Map();//键值对 map键值可以是任意类型。。普通键只能默认是字符串
+    var m = new Map();//键值对  key => value
     m.set('a',1233);
     m.set(1,'113');
     m.set(true,'xxx');
@@ -15,7 +15,7 @@
     m.set(null,'xxx');
     m.set(NaN,'xxx');
 
-    var arr = [1,2];
+    var arr = [1,2];  //map的键值key可以是任意类型。。普通键只能默认是字符串
     m.set(arr,'yy');
     console.log(m.get(arr));
 
@@ -29,12 +29,16 @@
 //    m.clear();
     console.log(m.has('1'));//false
 
-    console.log(m.get('a')); //1233
-    console.log(m.get(1));//113。。get('1')则输出为undefined 不存在字符串1
+    console.log(m.get('a')); //undefined
+    console.log(m.get(1));//123。。get('1')则输出为undefined 不存在字符串1
 
     console.log(m.size);//c长度
 
-
+    //遍历 forEach keys values entries
+    m.forEach((value,key) => {
+        console.log('key:',key);
+        console.log('value:',value);
+    })
 </script>
 </body>
 </html>

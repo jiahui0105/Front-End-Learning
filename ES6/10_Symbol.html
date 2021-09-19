@@ -9,13 +9,28 @@
 <script>
 
     //基础数据类型number  string  boolean  undefined  null   symbol
+    //symbol()表示一个独一无二的值,括号里可以传值，为了在输出的时候便于区分
+    //在定义对象时 为了防止属性名冲突，会将属性名定义为symbol类型
 
-    var obj = {};
-    var a = Symbol();
+    let xxx = Symbol();
+    let yyy = Symbol('key2');
+    let obj = {
+        name: 'zs',
+        age: 18,
+        color: 'red',
+        [xxx]: 'green',
+        [yyy]: 999
+    };
 
-    obj[a] = '1111';
+    // obj[xxx] = 'green';
     console.log(obj);
+    console.log(obj[xxx]);
+    console.log(obj[yyy]);
 
+    //symbol类型的key在循环中不会显示
+    for(key in obj) {
+        console.log(key);
+    }
 
 </script>
 </body>
