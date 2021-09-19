@@ -20,8 +20,13 @@
    arr.push('11111');
    console.log(arr);
 
-
-    //把类数组转为真的数组
+    /*
+        类数组 / 伪数组：拥有length属性， 不具有数组所具有的方法
+            Array.from()：类数组转换为数组
+             Array.of()：将一组值，转换为数组。
+             fill(value, start, end)：使用给定值填充数组，改变原数组
+             includes()：数组是否包含给定的值，boolean
+    */
    var obj ={
        0:'aaaa',
        1:'bbbb',
