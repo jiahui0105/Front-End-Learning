@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-    <!--<div id="div1" class="div2">div</div>-->
+    <div id="div1" class="div2">div</div>
     <!--<p>pppppppp</p>-->
     <!--<h1>hhhhhhh</h1>-->
     <!--<p>pppppp</p>-->
@@ -76,9 +76,8 @@
         });
 
 
-        //文档就绪函数  可写多个
+        //文档就绪函数：为了防止文档在完全加载（就绪）之前运行jQuery代码。  可写多个
         $(function(){
-
             console.log(1111);
         });
         $(document).ready(function(){
@@ -86,7 +85,7 @@
         });
 
 
-        window.onload = function(){    //只能写一个onload
+        window.onload = function(){    //只能写一个onload：页面中所有资源加载完成之后再执行
 
             // $('#div1').css('background','red');
             // var div = document.getElementById('div1');

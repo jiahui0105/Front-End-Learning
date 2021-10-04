@@ -4,13 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>圣杯布局</title>
+    <!--
+        圣杯布局：为了让中间div内容不被遮挡，将中间div设置了左右padding-left和padding-right后，
+                将左右两个div用相对布局position: relative并分别配合right和left属性，以便左右两栏div移动后不遮挡中间div。
+        优点：不需要添加dom节点
+        缺点：正常情况下是没有问题的，但是特殊情况下就会暴露此方案的弊端，如果将浏览器无线放大时，「圣杯」将会「破碎」掉。
+                当middle部分的宽小于left部分时就会发生布局混乱。（middle<left即会变形）
+    -->
     <style>
         *{
             margin: 0;
             padding: 0;
         }
         .content{
-            margin: 0 200px;
+            padding: 0 200px;
         }
         .content div{
             height: 500px;
@@ -24,6 +31,7 @@
             width: 200px;
             background-color: red;
             /*向左移动整个屏幕的距离 */
+            /*margin-left的意思是子元素的左边框距离父元素右边框的距离*/
             margin-left: -100%;
             position: relative;
             left: -200px;
