@@ -38,31 +38,31 @@
     }
 
 
-           function User() {
-               this.name ='zs';
-           }
-           User.prototype.say = function(){
+    function User() {
+        this.name ='zs';
+    }
+    User.prototype.say = function(){
 
-           };
+    };
+    var u = new User();
+    console.log(u.name);  //zs
+
+    var User = ()=>{
+        this.name = 'zx';
+    };
+    // var u = new User();
+    // console.log(u.name);  //报错 没有构造方法 不能new
 
 
-       var User = ()=>{
-           this.name = 'zx';
-       };
-    //报错 没有构造方法 不能new
-       var u = new User();
-       console.log(u.name);
-
-
-       var obj = {
-           name:'zs',
-           age:12,
-           say:()=>{
-               console.log(this.age);
-           }
-       };
-       obj.say();
-       var obj = new Object();
+    var obj = {
+        name:'zs',
+        age:12,
+        say:()=>{
+            console.log(this.age);  //say的父级this指向window
+        }
+    };
+    obj.say();  //输出undefined
+    var obj = new Object();
 
     //    var fn = ()=>{
     //        console.log(arguments[0]);

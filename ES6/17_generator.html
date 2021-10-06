@@ -19,10 +19,14 @@
     //        yield 'hello';
     //        yield 'world';
     //        yield 'generator';
-    //        return 0;
+    //        // return 0;
     //    }
     // var gen = fn();
     // console.log(gen.next());  //输出yield后面的 hello false(未执行完)
+    // console.log(gen.next());
+    // console.log(gen.next());
+    // console.log(gen.next());
+
 
     function request(url){
         $.get(url,res=>{
@@ -43,23 +47,38 @@
     }
 
     var g = fn();
+
     var a = g.next(); //调用next 然后执行yield后的request request输出res
-//    var b = g.next(); //什么时候调用next 什么时候输出 实现异步
-//    var c = g.next();
     console.log(a);
+   var b = g.next(); //什么时候调用next 什么时候输出 实现异步
+    console.log(b);
+   var c = g.next();
+
+
+    console.log(c);
 
     //----------------------------
 
    function* fn(){
        var x =  2 * (yield 3+5);
-       var y = yield x / 4;
+       var y = 2 + (yield x / 4);
        return y;
    }
 
-   var gen = fn();
-   var a =gen.next();//16
-   console.log(gen.next(a.value));//4 false
-   console.log(gen.next(3));
+    // next方法可以带一个参数，该参数就会被当作上一个yield表达式的返回值（起始值）。next参数若为空，则yield返回的value为undefined
+
+    var gen = fn();
+    // 遇到第一个yield停下来
+    var a =gen.next();//调用next往下走，next的参数是上一个yield表达式（yield 3+5）的返回值8
+    console.log(a);//8 false
+
+    //遇到第二个yield停下来
+    var b = gen.next(a.value);//调用next往下走，next的参数是上一个yield表达式(yield x / 4)的返回值4，其中x为2*8=16
+    console.log(b);//4 false
+
+    var c = gen.next(b.value);
+    console.log(c);//6 done
+   // console.log(gen.next(4));  //4
 
 
 
