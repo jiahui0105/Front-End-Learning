@@ -32,7 +32,7 @@
 }
 .common-search input{
   flex: 1;
-  /*移动端中默认的placeholder在垂直方向不居中，可以设置高度下一点 再加内边距*/
+  /*移动端中默认的placeholder在垂直方向不居中，可以设置高度小一点 再加内边距*/
   height: 0.3rem;
   padding: 0.15rem 0;
   font-size: 13px;

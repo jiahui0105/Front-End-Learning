@@ -17,9 +17,10 @@
     </style>
 </head>
 <body>
-<div id="app">]
-    // vue自带的event
-    <!--<button v-on:click="fun(2，$event)">click</button>-->
+<div id="app">
+    <!--vue自带的event-->
+    <!--<button v-on:click="fun(2,$event)">click</button>-->
+    <!--fun(2)传参    事件定义在methods中-->
     <button @click="fun(2)">click</button>
     {{msg}}
     <div id="div1" @click="click1">
@@ -37,6 +38,8 @@
             fun(a){
                 this.msg+=a;
                 console.log(event);
+                // vm.msg 直接用this.msg   this->实例化对象
+                // vm.click1() 直接用this.click1()
             },
             click1(){
                 console.log(111);
@@ -44,10 +47,15 @@
             click2(){
                 console.log(222);
                 // event.stopPropagation();   //阻止事件传播 或者 @click.stop
-                // event.preventDefault();    //阻止默认行为
+                // event.preventDefault();    //阻止默认行为 或者 @click.prevent
+                                            // @click.once 事件只执行一次
             }
         }
     })
+
+    // data的属性和methods的方法挂载到vm实例化对象上
+    // vm.msg
+    // vm.fun(2)
 </script>
 </body>
 </html>

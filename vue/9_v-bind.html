@@ -1,30 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <style>
-        .red{
-            width: 200px;
-            height: 200px;
-            background: red;
-        }
-        .font{
-            font-size: 40px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .red{
+      width: 200px;
+      height: 200px;
+      background: red;
+    }
+    .font{
+      font-size: 40px;
+    }
+  </style>
 </head>
 <body>
 <div id="app">
-    <!--绑定属性-->
-    <button @click="fn">toggle</button>
-    <!--<div id="div1" :class="classObj">dddddd</div>-->
-    <!--<div id="div1" :class="[classA,classB]">dddddd</div>-->
-    <!--<div id="div1" :class="{red:isRed,font:isFont}">ddddd</div>-->
+  <!--
+    绑定属性 v-bind:属性名  简写 :属性名
+    :class="{ className:boolean, className:boolean }"
+    :class=[]
+  -->
+  <button @click="fn">toggle</button>
+  <!--<div id="div1" :class="classObj">dddddd</div>-->
+  <!--<div id="div1" :class="[classA,classB]">dddddd</div>-->
+  <!--<div id="div1" :class="{red:isRed,font:isFont}">ddddd</div>-->
 
-    <!--div id="div1" :style="{background: styleA,'font-size':styleB}">dddddd</div>-->
-    <!--<div id="div1" :style="styleObj">dddddd</div>-->
-    <div id="div1" :style="[styleArr1,styleArr2]">dddddd</div>
+  <!--div id="div1" :style="{background: styleA,'font-size':styleB}">dddddd</div>-->
+  <!--<div id="div1" :style="styleObj">dddddd</div>-->
+  <div id="div1" :style="[styleArr1,styleArr2]">dddddd</div>
 </div>
 <script src="vue.js"></script>
 <script>

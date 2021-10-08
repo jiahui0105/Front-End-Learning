@@ -7,15 +7,20 @@
 <body>
 <demo></demo>
 <div id="app1">
+    <!--
+        在使用组件的地方引入组件：
+        <组件名称></组件名称>
+    -->
+
     <!--<demo1 x-msg="123"yy="haha"></demo1>-->
     <!--<demo1 x-msg="456"yy="hehe"></demo1>-->
-
     <!--html不区分大小写 而js区分 把xMsg中的M换成-m-->
     <demo1 x-msg="123" :yy="m1"></demo1>
     <demo1 x-msg="123" :yy="m2"></demo1>
     {{msg1}}
 </div>
 
+<!--template 定义组件中的html部分  （必须要有一个唯一的根元素 div）-->
 <script type="text/x-template" id="temp">
     <div>
         {{xMsg}}
@@ -31,7 +36,8 @@
 
 <script src="vue.js"></script>
 <script>
-    //全局组件 不常用
+    // 全局组件 Vue.components(name,obj)  name组件名 ,obj当前组件的配置信息
+    //可以在任意地方调用，不常用
     // Vue.components('demo',{
     //     template:"<div>div</div>"
     // });
@@ -44,16 +50,16 @@
             m1:'hahaha',
             m2:'hehehe',
         },
-        //局部组件
+        //局部组件：定义在哪个实例里，在该实例中才可以使用，可以定义多个
         components:{
             demo1:{
-                template:"#temp",
+                template:"#temp",   //template第一种方式  定义一个唯一的id来标识当前组件的html部分
                 // 或者把temp直接放到里面  template:"<div>{{xMsg}}<h1>{{yy}}</h1></div>"
-                //props里的'xMsg'表示demo1能够接收的值
-                props:['xMsg','yy']
+                props:['xMsg','yy']  //props里的'xMsg'表示demo1能够接收的值
             }
         }
     });
+
     new Vue({
         el:'#app2',
         data:{
@@ -61,7 +67,7 @@
         },
         components:{
             demo2:{
-                template:"<div>div2</div>"
+                template:"<div>div2</div>"  //template第二种方式 直接写在里面
             }
         }
     })

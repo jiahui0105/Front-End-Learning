@@ -6,8 +6,14 @@
 </head>
 <body>
 <div id="app">
-    <!--双向数据绑定-->
-    <!--v-model绑定input的value值和data的value值-->
+    <!--
+        v-model双向数据绑定 应用于表单元素  修改表单元素输入/选中的值，data里存储的值也会改变，显示的值也会同步改变
+            在input 普通文本中 类型是string
+            在复选框里 存储的类型是array
+            在单选框 string
+            在下拉列表里 string
+    -->
+    <!--v-model绑定input的val值和data的val值-->
     <input type="text" @keyup.enter="fun" v-model="val">
     {{msg}}
 </div>

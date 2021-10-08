@@ -6,19 +6,36 @@
 </head>
 <body>
 <div id="app">
+    <!--
+        父组件给子组件传值：
+            引用子组件的时候可以绑定一个属性:yy="m1"，
+            然后在子组件中用props:['yy']来接收值，props属性表示从父组件传递过来的值，是数组类型，可以接收多个父组件传过来的值 props:['XMSg','yy']
+
+        子组件向父组件传值：
+            引用子组件时可以添加一个自定义事件 @自定义事件名="fun"  (fun是父组件中定义的一个方法)
+            然后在子组件中$emit('自定义事件',要传的值) 调用父组件传给子组件的自定义事件
+    -->
     <demo1 x-m-sg="123" :yy="m1">
+        <!--slot传值 显示传的内容-->
         <p slot="p1">ppppppppppp</p>
         <p slot="p2">p2p2p2p2p2p</p>
     </demo1>
 
-    <demo1 x-m-sg="456" :yy="m2"></demo1>
+    <demo1 x-m-sg="456" :yy="m2">
+        <!--slot未传值 显示默认的内容-->
+    </demo1>
+
     {{msg}}
 </div>
 <script type="text/x-template" id="temp">
     <div>
         {{XMSg}}
-        <!--在组件中间加元素 需要说明加在哪里 用slot-->
-        <!--如果html中没传slot内容 则显示默认的，若传值 则显示传的内容-->
+        <!--
+            slot插槽：父组件中引入子组件template时，想在子组件中添加元素，则在子组件template中用slot，相当于占位
+            想要展示在哪里 就在哪里用slot
+            如果html中没传slot内容 则显示默认的，若传值 则显示传的内容
+        -->
+        <!--slot想要显示在这里 在这添加-->
         <slot name="p1">
             <p>我是默认的p1p1p1p1p1p1p</p>
         </slot>

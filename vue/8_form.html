@@ -6,17 +6,19 @@
 </head>
 <body>
 <div id="app">
+    <!--input普通文本 string-->
     <input type="text" v-model="txt">
     <input type="password">
-    <!--radio 单选框-->
+
+    <!--需要给model设置value 用于前后端数据交互使用-->
+    <!--radio 单选框  string-->
     <input type="radio" v-model="sex" value="n">女
     <input type="radio" v-model="sex" value="m">男
-    <!--checkbox 多选框-->
+    <!--checkbox 多选框  array-->
     <input type="checkbox" v-model="sport" value="足球">足球
     <input type="checkbox" v-model="sport" value="篮球">篮球
     <input type="checkbox" v-model="sport" value="乒乓球">乒乓球
-
-    <!--multiple="multiple"多选-->
+    <!--select下拉列表 string-->
     <select name="" id=""  v-model="sel">
         <option value="apple">apple</option>
         <option value="orange">orange</option>

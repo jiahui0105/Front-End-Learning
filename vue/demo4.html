@@ -28,6 +28,11 @@
 <div id="app">
     <button @click="login">登录</button>
     <button @click="reg">注册</button>
+    <!--
+        子组件向父组件传值：
+            引用子组件时可以添加一个自定义事件 @自定义事件名="fun"  (fun是父组件中定义的一个方法)
+            然后在子组件中$emit('自定义事件',要传的值) 调用父组件传给子组件的自定义事件
+    -->
     <my-dialog title="登录" v-show="isLoginShow" @fclose="close">
         用户名：<input type="text">
         <br>
