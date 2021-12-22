@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <!--
+        在vue2.x中，已知结构如下
+        App组件
+        <app>
+                <i-header @search="handleSearch"></i-header>
+                <i-content ref="iContent"></i-content>
+        </app>
+        1.假设iHeader的search事件需要和iContent交互，调用iContent中的init()方法，请写出handleSearch方法的实现
+        2.假设iContent中有一个具名插槽<slot name="slide"></slot>，如何将一段内容插入到该插槽所在位置，请改造app模板实现需求
+    -->
+     <app>
+         <i-header @search="handleSearch"></i-header>
+         <i-content ref="iContent">
+             <template slot="slide">
+                 <h1>我是slot</h1>
+             </template>
+         </i-content>
+     </app>
+    <script>
+        export default{
+            methods:{
+                handleSearch(){
+                    this.$refs.iContent.init();
+                }
+            }
+        }
+    </script>
+</body>
+</html>

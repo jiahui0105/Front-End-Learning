@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style type="text/css">
+        .rect {
+            width: 100px;
+            height: 100px;
+            background-color: black;
+            position:absolute;
+            top:50%;
+            left:50%;
+            transform: translate(-50%,-50%);
+        }
+        @media screen and (max-width:720px){
+            .rect{
+                background-color: blue;
+            }
+        }
+        @media screen and (min-width: 720px){
+            .rect{
+                background-color: red;
+            }
+        }
+        .rect:hover{
+            opacity:0.5;
+        }
+        /*
+            这里写 CSS，不要使用 JS
+            可以改上面的 .rect 类，不要改动其他部分
+        */
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="rect"></div>
+</div>
+</body>
+</html>

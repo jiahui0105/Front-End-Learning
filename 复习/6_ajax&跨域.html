@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <!--
+        跨域（跨文档消息通信） ：同源策略的限制
+
+        理解跨域首先必须要了解同源策略。同源策略是浏览器上为安全性考虑实施的非常重要的安全策略。
+        何谓同源:
+                URL由协议、域名、端口和路径组成，如果两个URL的协议、域名和端口相同，则表示他们同源。
+        同源策略:
+                浏览器的同源策略，限制了来自不同源的"document"或脚本，对当前"document"读取或设置某些属性。
+                 从一个域上加载的脚本不允许访问另外一个域的文档属性。
+
+         域名、端口、协议有一个不同就是跨域
+                1.域名：   www.a.com  www.b.com，qq.com  news.qq.com
+                2.端口：  localhost:8080  localhost:8081
+                3.协议不同： http https
+
+
+         跨域方式：
+                1.jsonp：利用script标签的src属性访问地址 请求后台地址，后台返回回调函数的调用。
+                2.iframe：利用src把 页面 加载过来，页面中可以套script标签。子页面通过top.fn() 用最顶层主页面的方法 但top不支持跨域。
+                3.将数据传到后台，后台去实现数据传输（后台不存在跨域）
+
+
+
+    -->
+<script>
+    //ajax
+    //1.创建xmlhttp 对象
+    var xmlhttp;
+    if (window.XMLHttpRequest)
+    {// code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp=new XMLHttpRequest();
+    }
+    else
+    {// code for IE6, IE5
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+
+    // 2.向服务器发送请求  （请求方式，url，true 是否异步操作）
+
+        //get
+    xmlhttp.open("GET","test.json",true);
+    xmlhttp.send();
+
+        //post
+    xmlhttp.open("POST","test.json",true);
+    xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    xmlhttp.send("name=xx");
+
+    // 3.服务器响应
+    xmlhttp.onreadystatechange=function()
+    {
+        //onreadystatechange 被触发五次（0-4），每次 readyState 都发生变化。
+        if (xmlhttp.readyState==4 && xmlhttp.status==200)
+        {
+            // document.getElementById("myDiv").innerHTML = xmlhttp.responseText;
+            console.log(xmlhttp.responseText);  //返回回来的数据
+        }
+    }
+
+    /*
+        readyState：保存了 XMLHttpRequest 的状态。
+            0: 请求未初始化
+            1: 服务器连接已建立
+            2: 请求已接收
+            3: 正在处理请求
+            4: 请求已完成且响应已就绪
+
+        status：状态码
+            200 服务器成功返回
+            404 资源找不到
+            500 服务器错误
+            503 服务不可用
+            304 缓存
+            301 永久重定向
+            302 临时重定向
+
+        get post请求区别
+            http请求方式的两种，
+            get是请求  post是提交
+            get(ie2-4k)数据量小，post很大
+            get是在请求头里，放在地址栏不安全，post是在包体里，相对安全
+            get可以缓存，post不能
+    */
+
+
+</script>
+</body>
+</html>

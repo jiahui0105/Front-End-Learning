@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <!--
+        请分别使用bind、call函数将函数func的作用域绑定在obj上，并执行输出
+	    var func = function () { console.log(this.a) }, obj = { a: 123, b: 321 }
+    -->
+    <script>
+        var func = function(){
+            console.log(this.a);
+        };
+        obj = {
+            a:123,
+            b:321
+        };
+
+        func.call(obj);
+        func.bind(obj)();
+    </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <!--简述vw、em、rem的计算方式，并写出.text1, .text2的实际字体px大小-->
+    <div style="font-size: 62.5%">
+        <div class="text-group" style="font-size: 1.4em;">
+            <span class="text1" style="font-size: 1em;">文本1</span>
+            <span class="text2" style="font-size: 1rem">文本2</span>
+        </div>
+    </div>
+    <!--
+        vw：将页面平均分成100份，1vw为视口宽度的1%
+        em：相对于父元素，比如父元素的fontsize为10，子元素fontsize为2em，即20
+        rem：相对于根元素html
+
+        一般的，各大主流浏览器的font-size默认值为16px,此时1rem=16px
+        font-size:62.5%  16px*62.5% = 10px
+        .text-group: 父元素10*1.4em = 14px
+        .text1：父元素14*1em = 14px
+        .text2: 根元素16*1rem = 16px
+    -->
+</body>
+</html>

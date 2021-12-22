@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <!--请写出val1、val2、val3的结果-->
+    <script>
+        var val1 = 1;//val1全局变量
+        var val2 = (function () {
+            var val1;  //用var定义在函数内部的变量 为局部变量
+            return val1 = 2
+        })();
+        var val3 = +!val2;  //val2的值为2 非0的数字为true，则!val2为false，则+!val2为把false转为数字类型
+        // = 是赋值，+ 代表后面的数字为正数，同理 =- 代表后面的数字为负数，相当于告诉编译器，即将赋值的数值类型为数字类型，不要把数字当作字符串去拼接
+        console.log(val1,val2,val3);  //1,2,0
+    </script>
+</body>
+</html>

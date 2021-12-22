@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <!--使用闭包改造8.2，使其递增输出-->
+    <script>
+        for(var i = 0;i < 5;i++){
+            (function(index){setTimeout (_ => {
+                console.log(index)
+            }, 50)})(i)
+        }
+    //    函数立即执行
+    </script>
+</body>
+</html>

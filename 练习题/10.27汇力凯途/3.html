@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <!--写出下列表达式的值-->
+    <script>
+        console.log(1 && 0 || 2);  //2
+
+        console.log([1, 2, 3, 4, 5].map(item => { return item !== 1 && item || false }));//[false, 2, 3, 4, 5]
+    //    map循环1~5  item为1  1!==1为false,false&&1为false，false||false为false
+    //                item为2~5  2!==1为true，true||2为2，2||false为2
+
+        console.log([1, 2, 3, 4, 5].filter(item => { return item > 2 }));//[3, 4, 5]
+    //    filter过滤
+
+        console.log('abcde'.slice(-2) === 'abcde'.substring(-2));  //false
+    //    slice(start)从数组下标为start开始截取数组一直到最后
+    //     slice(start,end)从数组下标为start开始截取一直到end之前（不包含end）返回的是新数组 原数组不会改变
+    //    'abcde'.slice(-2)  从倒数第二个开始截取，为de
+    //    substring和slice用法一样，但是substring不接受负的参数
+    </script>
+    <!--
+        JS中的与或非
+            与&&：一个为假则全为假，全真则全为真，遇假则停
+             只要“&&”前面是false，无论“&&”后面是true还是false，结果都将返“&&”前面的值;
+             只要“&&”前面是true，无论“&&”后面是true还是false，结果都将返“&&”后面的值;
+            或||：一个真就为真，全假则为假，遇真则停
+             只要“||”前面为false,不管“||”后面是true还是false，都返回“||”后面的值。
+              只要“||”前面为true,不管“||”后面是true还是false，都返回“||”前面的值。
+            数字0为false，非0则为true
+    -->
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <!--请计算.box容器的宽和高-->
+    <div style="width: 100px; height: 150px;">
+        <div class="box" style="box-sizing: border-box; padding: 100% 0 0; position: relative;background: red">
+        </div>
+    </div>
+    <!--
+        .box的宽高：100*100
+        box-sizing为border-box，width为content +  padding + border
+        div内没有任何文字 高度是内容撑开的 且position为相对父元素定位 所以content为100*0
+        padding: 100% 0 0 顺序为上 左右 下，上内边距为100% ,所以padding为100，border为0
+    -->
+</body>
+</html>

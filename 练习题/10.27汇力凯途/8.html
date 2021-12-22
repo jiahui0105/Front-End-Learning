@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <!--写出打印i的结果-->
+    <script>
+        for (let i = 0; i < 5; i++) {
+            setTimeout (_ => {
+                console.log(i)
+            }, 50)
+        }
+        //0 1 2 3 4
+        //因为let i是区块变量，每个i只能存活到大括号结束，并不会把后面的for循环的 i 值赋给前面的setTimeout中的i；
+        // 而var i 则是局部变量，这个 i 的生命周期不受for循环的大括号限制；
+
+        for (var i = 0; i < 5; i++) {
+            setTimeout (_ => {
+                console.log(i)
+            }, 50)
+        }
+        // 5 5 5 5 5
+        // setTimeout是异步执行的，50毫秒后向任务队列里添加一个任务，只有主线上的全部执行完才会执行任务队列里的任务，
+        // 所以当主线程for循环执行完之后 i 的值为5，这个时候再去任务队列中执行任务，i全部为5；
+        // 每次for循环的时候setTimeout都会执行，但是里面的function则不会执行被放入任务队列，因此放了5次；
+        // for循环的5次执行完之后不到50毫秒；50毫秒后全部执行任务队列中的函数，所以就是输出五个5
+
+    </script>
+</body>
+</html>
