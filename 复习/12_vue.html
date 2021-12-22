@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<!--
+        1.vue常用指令
+            v-for 循环数组、对象
+            v-text v-html输出内容
+                    v-text {{}} 渲染数据,不解析标签
+                    v-html  不仅可以渲染数据,而且可以解析标签
+            v-on  $event  简写@  绑定事件
+                        <button v-on:click="fun(2，$event)">click</button>
+                        <button @click="fun(2)">click</button>
+            v-model  双向数据绑定
+            v-bind  简写：属性名      绑定属性
+            v-if  v-else  v-else-if  v-show  条件渲染
+                        v-if是“真正”的条件渲染，因为它是通过控制dom节点的存在与否来控制元素的显隐。
+                        v-show是通过设置DOM元素的display样式，block为显示(v-show:true)，none为隐藏(v-show:false)；
+                            v-show 的元素始终会被渲染并保留在DOM中。v-show 不支持 <template> 元素，也不支持 v-else。
+                        如果需要非常频繁地切换，则使用 v-show 较好；如果在运行时条件很少改变，则使用 v-if 较好。
+
+        2.生命周期 8个
+            beforeCreate 组件实例刚被创建，组件属性计算之前  $data和$el都为undefined，取不到
+            created 组件实例创建完成，属性已绑定 即$data能取到，但DOM还未生成 $el(挂载的元素)还不存在
+            beforeMount 模板编译/挂载之前  能获取到$data和$el，data的msg值未挂载上(data在模板中先占一个位置，数据还未显示)
+            mounted 模板编译/挂载之后  msg值挂载(data数据显示出来了)    mount是操作dom
+            beforeUpdate 组件更新之前 比如修改值
+            updated 组件更新之后  数据更改导致的虚拟DOM重新渲染
+            beforeDestroy  组件销毁前调用  实例仍然完全可用，可以清除定时器等
+            destroyed 组件销毁后调用  所有指令都被解绑
+
+        3.组件传值
+            父组件给子组件传值:
+                                props  子组件中通过props:[要传的参数]收取值，收到后用{{参数}}渲染页面
+                                <slot>
+            子组件给父组件传值：
+                                子组件中$emit('父组件定义的事件','要传的参数')
+            两个兄弟组件间传值：
+                                兄弟1传给父亲，父亲再传给兄弟2
+                                用vuex
+
+        4.computed:
+            计算属性将被混入到 Vue 实例中。所有 getter 和setter 的 this 上下文自动地绑定为 Vue 实例。
+            计算属性的结果会被【缓存】，除非依赖的响应式属性变化才会重新计算。
+            computed：调用好几次 如果没变化 还是原来的值；如果用methods的话，调用一次 就计算一次。
+
+          watch：监听属性的变化（computed计算属性或者data中的属性）
+                 一个对象，键是需要观察的表达式aa，值是对应回调函数function。  监测改变后的值newVal和改变前的值oldVal
+                watch: {
+                    aa: function(newVal,oldVal){
+                        console.log('newVal:',newVal);
+                        console.log('oldVal:',oldVal);
+                        ...
+                    }
+                }
+
+           filters:过滤器，可以在filter中封装文本格式化的一些方法，可以定义多个过滤器
+                   调用的时候需要通过“管道”| 调用
+
+                   filters:{
+                        formateDate(val) {   //val是接收到的参数
+                            let tmp = val.split('-')
+                            return `${tmp[0]}年${tmp[1]}月${tmp[2]}日`
+                        }
+                   }
+
+                   日期:{{ obj.data | formateDate}}
+
+              调用filters：value | filterfun，  value是需要格式化的内容 filterfun是在filters属性中定义的格式化文本的方法
+
+
+        5.vuex          全家桶store.js
+            state访问状态对象    存值   存的值在页面中显示，用mapState()  或者$store.state.count
+            mutations修改状态    修改值  调用mutations里的方法用：$store.commit()
+            getters计算过滤操作  相当于computed计算属性
+            actions异步修改状态  做异步操作  actions中如果想修改state中存的值，还是要调用commit()
+
+
+        6.双向数据绑定     发布者 订阅者 观察者
+            1)数据绑定（实现更新显示）
+                    通过数据劫持实现
+            2)模板解析（实现初始化显示）
+                    解析大括号表达式
+                    解析指令
+
+            https://segmentfault.com/a/1190000006599500
+            实现mvvm的双向绑定，就必须要实现以下：
+                    1、实现一个数据监听器Observer，通过ES5 提供的访问器属性Object.defineProperty()来实现对属性的劫持，
+                           能够对数据对象的所有属性进行监听，如有变动可拿到最新值并通知订阅者。
+                       Object.defineProperty方法第一个参数是要设置的对象，第二个参数是要对象的属性，
+                           第三个参数是一个对象，里面有set和get方法,当设置属性值或者获取属性值的时候就会执行这个set，get方法。
+                       vue就是通过set方法，做到vue数据变更时，同时渲染页面数据。vue也会给dom对象绑定事件，这样页面数据变更时，也会对应的修改data
+                    2、实现一个指令解析器Compile，对每个元素节点的指令进行扫描和解析，根据指令模板替换数据，以及绑定相应的更新函数
+                    3、实现一个订阅者Watcher，作为连接Observer和Compile的桥梁，能够订阅并收到每个属性变动的通知，
+                        执行指令绑定的相应回调函数，从而更新视图
+                    4、mvvm入口函数，整合以上三者
+
+                    obj = {
+                        name:'zs'
+                    }
+                    Object.defineProperty(obj,name,{
+                        set
+
+                        get
+                    })
+
+        7.普通方法:this.arr[1] = 90
+                    通过索引来修改数组，虽然data值发生了变化，但是视图并没有同步更新
+          vue实例化对象下有一个修改数组/对象的方法：this.$set(this.arr,1,90)
+                    $set(target,index,vlaue)   ($代表vue自带的方法)
+
+    -->
+</body>
+</html>

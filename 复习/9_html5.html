@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <!--
+        1.html5新特性
+            新的语义化标签：如header、footer、nav、article、sidebar等section video、audio
+            新增表单控件：input type="email/number/range"
+            新的选择器：querySelector 返回匹配指定选择器的第一个元素 和 querySelectorAll 返回NodeList
+            json的方法：JSON.parse() 字符串->对象  和  JSON.stringify() 对象->字符串
+                        深克隆：先把对象a转换成字符串，再转换成对象，赋值给对象b
+                                function循环遍历 判断是否是object
+            历史管理：history.pushState() 当前浏览器会话的历史堆栈中添加一个状态 和 window.onpopstate
+            本地存储：localStorage和sessionStorage
+            Canvas画布   canvas和svg的区别  分辨率不同 canvas依赖分辨率 放大会模糊
+                                            api不同 canvas只有一个标签 剩下的通过js设置，svg有很多标签
+
+        2.本地存储 本地化数据管理 sessionStorage(h5) localStorage(h5) cookie(原生)      在Application里能找到
+            共同点：都是保存在浏览器端，且同源的。  （同源：域名、端口、协议都相同，有一个不同就是跨域）
+            区别：
+                1）cookie数据始终在同源的http请求中携带（即使不需要），即cookie在浏览器和服务器间来回传递数据。
+                    而sessionStorage和localStorage不会自动把数据发给服务器，仅在本地保存。
+                    cookie数据还有路径（path）的概念，可以限制cookie只属于某个路径下。
+                2）存储大小限制也不同
+                    cookie数据不能超过4k，同时因为每次http请求都会携带cookie，所以cookie只适合保存很小的数据，如会话标识。
+                    sessionStorage和localStorage 虽然也有存储大小的限制，但比cookie大得多，可以达到5M或更大。
+                3）生命周期不同
+                    sessionstorage:关闭浏览器就删除  存在于整个session会话中
+                    localstorage:一直有，除非手动删除
+                    Cookie：可以设置过期时间
+
+                    sessionStorage：仅在当前浏览器窗口关闭前有效，自然也就不可能持久保持
+                    localStorage：始终有效，窗口或浏览器关闭也一直保存，因此用作持久数据
+                    cookie只在设置的cookie过期时间之前一直有效，即使窗口或浏览器关闭。
+                4）作用域不同
+                    sessionStorage不在不同的浏览器窗口中共享，即使是同一个页面
+                    localStorage 在所有同源窗口中都是共享的
+                    cookie也是在所有同源窗口中都是共享的
+
+    -->
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div1{
+            width: 200px;
+            height: 200px;
+            background: #ff0000;
+            /*transition: width 2s ease 2s;*/
+
+            animation: run 3s linear 2s forwards 4;
+            /*forwards不回到初始状态，默认回到初始状态*/
+        }
+        /*animation*/
+        @keyframes run {
+            50%{
+                width:800px;
+            }
+            100%{
+                width:500px;
+            }
+        }
+
+        #div1:hover{
+            width: 800px;
+        }
+    </style>
+</head>
+<body>
+    <div id="div1">
+
+    </div>
+    <!--
+        1.css3中的属性：
+            弹性盒模型
+            过渡和动画：
+                transform变形  (rotate顺/逆时针旋转 translate位移 scale缩放 skew倾斜)  相对于元素的当前位置
+                transition:width 2s ease 2s                    过渡：属性 执行时间 运动方式 延迟时间
+                animation:xx 2s ease 2s forwards 2;           动画：属性 执行时间 运动方式 延迟时间 是否回到初始状态 执行次数
+                @keyframes xx{}
+
+                过渡   需要人为改变属性才会触发
+                动画   可以直接执行，可以执行更复杂的动画
+            box-shadow边框阴影  text-shadow
+            border-radius边框圆角
+            background-size
+
+        2.弹性盒模型
+            父元素：
+                display:flex
+                flex-direction：row | row-reverse | column | column-reverse
+                        横向从左到右排列 |横向相反 | 即纵向从上往下排列 |纵向相反
+                align-items:flex-start | flex-end | center | baseline | stretch
+                        纵轴垂直对齐方式
+                justify-content：flex-start | flex-end | center | space-between | space-around
+                        横轴水平对齐方式
+
+            子元素：
+                flex-group:份数(分配剩余空间的百分比)   取值为非负数（注：如果取值为负数那么和0的取值效果相同）
+                flex: <' flex-grow '> <' flex-shrink >'? || <' flex-basis '>
+
+            例子：元素布局问题（水平垂直都居中display:flex;justify-content;align-items，左侧固定右侧自适应）
+
+         3.布局问题 垂直、水平居中
+    -->
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <!--
+        移动端兼容问题：
+            移动布局自适应不同屏幕的方式（响应式设计实现方式）
+                    1）响应式布局：媒体查询@media（max-width min-width 横屏 竖屏等） ，bootstrap  栅格布局 12等分 col-3
+                    2）100%布局，弹性盒模型分份----自适应
+                    3）等比缩放布局（rem）  rem 相对根元素html的fontsize
+                                            em 相对于父元素 （例如父元素fontsize是50，子元素fontsize为2em 就是100）
+                       以下属性不建议使用rem可以直接使用px：font-size、border、box-shadow、border-radius
+            机型兼容性：手机固有bug 例如某些IOS设备上触发不了点击事件，需加上pointer:cursor
+            300ms延迟问题：页面在移动端默认双击会缩放页面
+            点透事件tap：
+                    当手指触摸屏幕时，系统生成两个事件，一个是touch，一个是click。移动端事件流：touchstart -> touchmove -> touchend -> click
+                    zepto的tap事件是通过监听绑在document上的touch事件的，并且tap事件会冒泡到document上触发的。
+                    在冒泡之前，用户手的接触屏幕(touchstart)和离开屏幕(touchend)会触发click事件，
+                    而click的触发有延迟(这就是为什么移动端不用click)。所以在执行完tap后，弹出来的选择组件马上就隐藏，
+                    此时click还在延迟的300ms中，当300ms到来时，click到的是隐藏之后下方的元素，如果正下方的元素绑定click事件此时便会触发。
+
+                    解决办法：1)touchstart代替click并阻止默认行为  2)touchend代替tap事件并阻止默认行为preventDefault()；
+                              3)引入fastclick.js                   4)延迟一定的事件(300ms+)来处理事件
+            1px问题：
+                    在手机上border无法达到想要的效果。iPhone的devicePixelRatio==2，而border-width：1px描述的是设备独立像素，
+                    所以border被放大到2px显示，在iPhone上就会显得较粗。
+
+                    解决办法：1)把border给了元素的before或after等伪类，然后伪类利用css3的transform:scale(0.5)实现
+                              2)写一些阴影效果 box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1)
+                              3)通过背景图片实现
+
+             有的手机input placeholder无法垂直居中：可以设置input高度小点 然后上下加padding
+                                                    网上的解决⽅式line-height：normal
+
+
+            设备像素比（dpr）: DPR=物理像素/css像素。 它的本质是指一个 CSS 像素代表几个物理像素。它的意义是为了让图像能够在高清屏上显示。
+            iPhone6(iphon6+)的逻辑像素是375x667pt。但是由于每个逻辑的点因为视网膜屏密度增加了一倍，即1pt=2px，
+                    那么其实iPhone 6的物理像素是750x1334px（为了适配高清屏幕，UI图通常以Iphone6的物理分辨率来设计视觉稿）
+
+            常用单位
+                vw vh 将页面平均分成100份，1vw等于视口宽度的1%，1vh等于视口高度的1%
+                deg角度
+                百分比：
+                    如果将元素的字体大小设置为百分比，则是父元素字体大小的百分比
+                    如果元素宽度设置为百分比，则是父元素宽度的百分比
+                calc：动态计算长度（运算符前后需要保留一个空格） eg: width: calc(100% - 100px)
+
+    -->
+</body>
+</html>

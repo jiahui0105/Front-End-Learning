@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <!--
+        1.闭包  是指外部函数里声明内部函数，内部函数引用外部函数里的局部变量。这样当外部函数调用完毕以后，外部函数的局部变量不被释放，可以一直使用。
+            形成条件：1)函数套用函数 即函数嵌套
+                      2)内部的函数调用外部函数的变量 即当前作用域中没有该变量 则去上一级中找
+            好处：可以把变量长期存在内存中，不被垃圾回收机制回收。避免全局变量的污染。私有成员的存在。
+            坏处：可能会被造成内存泄漏
+                  JS垃圾回收机制：标记清除、引用计数
+
+            具体应用：
+                    1)代码模块化，避免全局变量的污染。
+                    2)循环中找到对应元素的索引。在一个ul里有多个li，单击li的时候显示自己的索引，
+                            实现方式是：在for循环给li绑定事件时，在for循环里添加函数立即调用，为这个函数立即调用传递i做为实参，定义index为形参。
+                                        然后在这个函数立即调用里给li注册单击事件，在单击事件里alert函数立即调用中的形参index
+
+            函数立即调用(function(){})()
+
+        2.函数节流 （性能优化）
+            一个函数执行一次后，只有大于设定的执行周期后才执行第二次，有个需要频繁触发的函数。
+            出于性能优化角度，在规定时间内，只让函数触发第一次生效，后面不生效。
+
+        3.函数防抖  （性能优化）
+            一个需要频繁触发的函数，在规定时间内只让最后一次生效，前面的不生效。
+
+        4.任务队列  js单线程
+            同步任务synchronize
+                    在主线程上排队执行的任务，只有前一个任务执行完毕，才能执行后一个任务
+            异步任务asynchronize
+                    不进入主线程，而进入"任务队列"(task queue)的任务。只有"任务队列"通知主线程，某个异步任务可以执行了，该任务才会进入主线程执行。
+
+        5.事件循环 event loop
+            1）所有同步任务都在主线程上执行，形成一个“执行栈”。
+            2）主线程之外，还存在一个“任务队列”(task queue)。只要异步任务有了运行结果，就在“任务队列”中放置一个事件。
+            3）一旦“执行栈”中所有的同步任务执行完毕，系统就会读取“任务队列”，看看里面有哪些事件。
+                那些对应的异步任务，于是结束等待状态，进入“执行栈”，开始执行。
+            4）主线程不断重复上面的三步。
+
+        6.宏任务队列&微任务队列
+            宏任务macro-task：包括整体代码script，setTimeout，setInterval。
+                    宏任务所处的队列就是宏任务队列。宏任务队列可以有多个。。即“任务队列”task queue
+                    浏览器为了能够使得JS内部(macro)task与DOM任务能够有序的执行，会在一个(macro)task执行结束后，
+                        在下一个(macro)task 执行开始前，对页面进行重新渲染，流程如下：(macro)task->渲染->(macro)task->...
+
+            微任务micro-task：new Promise.then(回调)，process.nextTick（Node.js）
+                    微任务所处的队列就是微任务队列。微任务队列只有一个。
+                    微任务可以理解是在当前 task 执行结束后立即执行的任务。也就是说，在当前task任务后，下一个task之前，在渲染之前。
+                        所以它的响应速度相比setTimeout（setTimeout是task）会更快，因为无需等渲染。
+                        也就是说，在某一个macrotask执行完后，就会将在它执行期间产生的所有microtask都执行完毕（在渲染前）。
+
+            宏任务是由宿主（JS运行的环境 一般为浏览器或者Node）发起的，而微任务由JavaScript自身发起。
+
+            运行机制：
+                执行一个宏任务，如果“执行栈”（同步任务的主线程）中没有就从“任务队列”（宏任务队列）中获取
+                执行过程中如果遇到微任务，就将它添加到微任务的任务队列中
+                宏任务执行完毕后，立即执行当前微任务队列中的所有微任务（依次执行）
+                    当前宏任务执行完毕，开始检查渲染，然后GUI线程接管渲染
+                    渲染完毕后，JS线程继续接管，开始下一个宏任务（从事件队列中获取）
+
+                【我的理解】
+                （
+                    同步任务->执行栈（即任务队列当中的第一个宏任务），宏任务->任务队列，微任务->微任务队列
+
+                    先执行第一个宏任务 即执行栈中的所有同步任务；然后立即执行当前微任务队列中的所有微任务（依次执行）；
+                    然后执行下一个宏任务；再执行立即执行当前微任务队列中的所有微任务；
+                    依次循环。。
+                ）
+
+    -->
+
+    <button id="btn">click</button>.
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+<script>
+
+//闭包
+    /*
+    var foo = function(){
+      console.log("1");
+    };
+    foo();
+
+    //函数立即调用 和上面的相等
+    (function(){
+        console.log("1");
+    })();
+
+    //可以传参
+    (function(a){
+      console.log(a);
+    })(2);
+    */
+
+    var aLi = document.getElementsByTagName("li");
+    //当点击每一个li时，输出其索引
+    for(var i=0;i<aLi.length;i++){
+        (function(index){
+            //index是i传过来的值
+            aLi[index].onclick =function(){
+                console.log(index);
+            }
+        })(i)
+    }
+
+    // for(var i=0;i<aLi.length;i++){
+    //     aLi[i].onclick = function(){
+    //         console.log(i);  //输出5  绑定事件时该事件并没有被执行，只是把回调函数赋值，当点击触发事件时才执行，当点击时循环已经执行完。用闭包。
+    //     }
+    // }
+
+    // let的块级作用域  相当于闭包
+    for(let i=0; i<aLi.length; i++){
+        aLi[i].onclick = function(){
+            console.log(i);//获取li的索引
+        };
+    }
+
+
+
+//节流throttle  间隔一段时间(delay)后再执行函数fn
+    function throttle(fn,delay){
+        var startTime = 0;
+        return function(){          //闭包
+            var nowTime = Date.now();
+            if(nowTime - startTime >delay){
+                // fn();
+                fn.call(this);      //修改this指向  当前函数的this(本来是window)指向fn(document)
+                startTime = nowTime;
+            }
+        }
+    }
+    document.onmousemove = throttle(function(){
+        console.log("滑动" +Date.now());
+        console.log(this);  //正常的事件处理函数中，this应指向document。。但节流后 此时的this指向window(普通函数的this指向window)。。应修改this指向
+    },3000);
+
+    /*
+    //每次鼠标一滑动就会执行，通过节流 改成每间隔一段时间再执行
+    document.onmousemove = function(){
+        console.log("滑动" +Date.now());  //时间轴
+    }
+    */
+
+
+//防抖debounce
+    function debounce (fn,delay){
+        var timer = null;
+        return function(){
+            clearTimeout(timer);
+            timer = setTimeout(function(){
+                fn.apply(this);   //修改this指向
+            }.bind(this),delay);  //定时器中的this指向window，用bind修改this指向。。或者timer用箭头函数 箭头函数的this指向父级作用域
+        }
+    }
+    var oBtn = document.getElementById('btn');
+    oBtn.onclick = debounce(function(){
+        console.log("点击" +Date.now());
+        console.log(this);   //修改this指向 使其指向button
+    },1000);
+    /*
+    //当频繁点击button时 每次都会执行，通过防抖 改成间隔时间内只让最后一次执行
+    oBtn.onclick = function () {
+        console.log(Date.now())
+    }
+    */
+</script>
+</body>
+</html>

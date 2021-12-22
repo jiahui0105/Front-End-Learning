@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <!--
+        jq最核心的是$()，他是一个函数，函数中返回一个自定义的jq对象。
+        jq对象是一个类，在这个类的原型prototype下有许多jq自定义的方法。
+        每次调用$返回一个新的jq对象，同时在$函数中根据传入参数的类型。函数或者字符串。
+        把选中的元素存在数组中，遍历这个数组，取出每个元素进行dom操作。
+        在每一个方法中，用return this（this就是在$函数中返回的jq对象）实现链式操作。
+
+        jq对象 -> js原生对象  $obj.get(0) or  $obj[0]
+                $('#div1')[0]  or $('#div1').get(0)
+        js原生对象 -> jq对象   $(obj)
+                $('#div1').css('background','red')
+    -->
+    <div id="div1">我是div1</div>
+<script>
+    // $('#div1').css()
+
+    /*文档就绪函数  等页面中html加载完再执行
+        $(function(){
+
+        });
+
+        绑定文档就绪函数 事件名DOMContentLoaded
+                addEvent(document,'DOMContentLoaded',selector,false)
+    */
+    function $(str){
+        return new Jquery(str);
+    }
+
+    function Jquery(str){
+        this.eles = [];//存放所有选中的元素
+        var sel = str.charAt(0);//获取str的选择器类型 .div #div
+        var name = str.substr(1); //获取id名或class名
+
+        if(sel == "#"){
+            this.eles.push(document.getElementById(name));
+        }else if(sel == "."){
+            this.eles = [...document.getElementsByClassName(name)];  //数组
+            // this.eles = document.getElementsByClassName(name);  //类数组 不能进行pop等
+        }
+        console.log(this.eles);//[div#div]
+    }
+
+    Jquery.prototype.css = function(arg1,arg2){
+        if(typeof arg1 == "string" && typeof arg2 == "string"){
+            //$("#div1").css("background","red");
+            this.eles.map(function(ele,index){  //循环eles ，map(键,值)
+                // console.log(ele,arg1,arg2);  //div,"background","red"
+                //将循环的每一个ele元素的arg1属性设置成获取的arg2
+                ele.style[arg1] = arg2;  //动态属性用[]
+            })
+        }else if(typeof arg1 == "object" &&typeof arg2 == "undefined"){
+            //$("#div1").css({background:"red",height:"100px"})
+            this.eles.map(function(ele,index){
+                // console.log(ele,arg1,arg2);  // div,{background: "red", background: "100px"},undefined
+                for(key in arg1){
+                    // console.log(key);  //background,background
+                    // console.log(arg1[key]); //red,100px
+                    //将每一个元素ele的key属性设置成获取的arg1[key]值
+                    ele.style[key] = arg1[key];
+                }
+            })
+        }
+        return this;  //this返回jQuery对象，可以实现链式操作
+    };
+
+    Jquery.prototype.on = function(eventName,handle){  //事件名，事件处理函数
+        console.log(this);  //Jquery {eles: Array(1)}  eles: [div#div1]
+        this.eles.map(function(ele,index){
+            ele.addEventListener(eventName,handle)
+        })
+    };
+
+
+    // $("#div1");
+    // $("#div1").css("background","red");
+    $("#div1").css({
+        background:"red",
+        height:"100px"
+    }).on('click',function(){
+        console.log('click')
+    })
+
+</script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <!--
+        性能优化    打开页面时加载速度快一些
+            1.减少HTTP请求：比如css精灵（把图片做成一个）、懒加载  请求越少 速度越快
+            2.压缩图片和使用图片Spirit技术  雪碧图
+            3.请减少对DOM的操作   每次操作dom会重新渲染页面
+            4.CDN加速(内容分发网络)：最近的节点上（就是将一些常用的文件，比如jq类库放在速度更快的服务器上，比如百度的cdn，提高加载速度）
+            5.require、vue框架
+            6.尽量使用css3(css3会开启GPU加速)requestAnimationFrame,加快动画速度,
+            7.尽可能重绘：元素的宽高等不变 只是一些背景等发生变化（如果通过设置style属性改变结点样式的话，每设置一次都会导致一次重排，）
+            8.合理使用标签、选择器（减少）
+            9.控制Cookie大小和污染(设置合理的过期时间)
+            10.压缩css js文件
+            11.使用icon-font来替换一些图标，减少图片的数量
+            12.减少dom操作，减少重排和重绘
+
+
+
+        AMD和CMD 模块化开发
+            https://www.zhihu.com/question/20351507
+            AMD和CMD区别：
+                    AMD：RequireJS  提前执行  一上来就加载
+                            require(['a'],functiona(){
+
+                            })
+                    CMD：SeaJS  延迟执行  何时用何时加载
+                            define(function(require){
+                                require('a');
+                            })
+
+             require 原理：
+                    动态的创建script   异步加载js文件  正则表达式匹配需要加载的文件
+                    var oScript = document.createElement('script');
+                    oScript.src="../xx.js";
+                    document.head.appendChild(oScript);
+
+              异步方式分为defer 和async
+                    defer ie语法，所有加载完再执行 保证顺序
+                    async 标准 浏览器，加载完一个就执行 保证不了顺序
+    -->
+</body>
+</html>

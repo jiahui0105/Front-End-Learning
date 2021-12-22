@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <!--
+        es6新特性
+                let const，symbol，箭头函数(this指向)，set去重(has delete clear size) map键值对(has get delete clear size) key为任意类型 循环，
+                解构，扩展运算符...，promise generator，class类，async
+                遍历 forEach keys values entries
+        1.let var const区别
+            let没有变量提升  let声明的变量一定要在声明后使用
+            let不能重复声明
+            let暂时性死区 (在当前作用域内不允许同名的变量进来)
+                    只要块级作用域内存在let命令，它所声明的变量就会绑定这个区域，不再受外部的影响
+                    如果区块中存在let和const命令，这个区块对这些命令声明的变量，从一开始就形成封闭作用域。
+                    凡是在声明之前就使用这些变量，就会报错。 这就是暂时性死区（声明前的部分）
+                    let c=10;
+                    function fn(){
+                        console.log(c);  //报错 c is not defined， 暂时性死区，不允许let c=10进来
+                        let c=30;
+                   }
+                   fn();
+            let 块级作用域  es5全局作用域和函数作用域  es6块级作用域
+                            使用let和const声明的变量，只在当前{}内生效，{}为if switch等语句  非函数体
+                    for(let i=0;i<5;i++){
+                    console.log(i);
+                    }
+
+            const：声明一个只读的常量。一旦声明，常量的值不能改变
+                    实际上是变量指向的那个内存地址不能改动   Object.freeze(obj)可以使obj冻结，改不了
+
+            全局作用域：定义在函数外或代码块{}外的变量（即var声明），还有在函数或代码块内未用var声明的变量
+            函数作用域（局部作用域）：定义在函数内部的变量。函数作用域内，外层作用域无法直接访问函数内部的作用域
+                                      如果想读取函数内的变量，必须借助 return 或者闭包。
+            块级作用域  {}
+            动态作用域：只能在执行阶段才能决定变量的作用域   静态作用域：在定义时
+
+        2.箭头函数和普通函数区别
+            1）this指向  箭头函数中的this指向【声明】时的this,也就是指向【父作用域】
+                         普通函数的this指向【执行】时的this
+            2）不可以当做构造函数，也就是不能 new
+            3）不能用arguments对象（arguments返回一个类数组），该对象在函数体内不存在。如果要用，可以使用rest参数代替
+
+            类数组 / 伪数组：拥有length属性， 不具有数组所具有的方法
+            Array.from()：类数组转换为数组  还可以用扩展运算符
+             Array.of()：将一组值，转换为数组。
+             fill(value, start, end)：使用给定值填充数组，改变原数组
+             includes()：数组是否包含给定的值，boolean
+
+        3.解构 从数组或对象中提取值，对变量进行赋值
+
+        4.扩展运算符：把数组或者类数组展开成用逗号隔开的值
+                作为数组一部分；复制数组；合并数组 对象；类数组转化为数组、解构；
+
+        5.promise
+            是异步编程的一种解决方案。将异步操作以同步操作的流程表达出来。避免了层层嵌套的回调函数（回调地狱）
+            一个promise可能有三种状态 pending进行中、fulfilled已成功、reject已失败。
+                状态只能由“等待”转到“成功”或“失败”，不能逆转，成功和失败也不能相互转换
+            成功调用resolve()，失败调用reject()
+            Promise.all()都执行完再执行，Promise.race()最快的执行完就执行
+
+        6.generator：是 ES6 提供的一种异步编程解决方案
+            function关键字与函数名之间有一个星号  function* fn(){}
+            函数体内部使用yield表达式，定义不同的内部状态
+            generator函数返回的是指针对象，而不会执行函数内部逻辑。
+            generator函数提供了一种可以暂停执行的函数。yield表达式就是暂停标志。
+
+            只有 调用next方法 才会遍历下一个内部状态，遇到yield表达式停止。next返回{value: yield后的表达式结果/undefined, done(是否执行完): false/true}
+            再次调用next方法会从上一次停止时的yield处开始，直到最后。
+
+            yield表达式本身没有返回值，或者说总是返回undefined。
+            next方法可以带一个参数，该参数就会被当作上一个yield表达式的返回值（起始值）。next参数若为空，则yield返回的value为undefined
+
+        7.async await  （ES7）真正意义上去解决异步回调的问题，同步流程表达异步操作
+            语法：
+                async function foo(){
+                    await 异步操作;  //返回Promise对象
+                    await 异步操作;
+                }
+            特点：
+                1、不需要像Generator去调用next方法，遇到await等待，当前的异步操作完成就往下执行
+                2、返回的总是Promise对象，可以用then方法进行下一步操作
+                3、async取代Generator函数的星号*，await取代Generator的yield
+                4、语意上更为明确，使用简单
+
+        8.class类
+
+        9.ES5中数组遍历方式
+            • for循环
+            • forEach()：没有返回值，只是针对每个元素调用func
+            • map()：返回新的Array，每个元素为调用func的结果
+            • filter()：返回符合func条件的元素数组
+            • some()：返回boolean，判断是否有元素是否符合func条件
+            • every()：返回boolean，判断每个元素是否符合func条件
+            • reduce()：接收一个函数作为累加器, (prev, cur, index, array)
+            • for in ???
+         ES6中数组遍历方式
+            • find()：返回第一个通过测试的元素
+            • findIndex()：返回的值为该通过第一个元素的索引
+            • for of
+            • values()
+            • keys()
+            • entries()：[index, item]
+    -->
+<script>
+
+// rest返回数组 把逗号隔开的值组合成一个数组
+
+    // function a(x,y,z){
+    //     console.log(x,y,z);
+    //     console.log(arguments);  //类数组 arguments[0]获取第一个元素
+    // }
+    let ar = (x,...rest) => {
+        console.log(x);
+        console.log(rest);  //(2) [2, 3]
+    };
+    ar(1,2,3);
+
+// 解构  从数组或对象中提取值，对变量进行赋值
+    let a = [1,2,3];
+    let[x,y,z] = a;
+
+    let {name,age} = {name:'zs',age:20};
+
+//扩展运算符  复制、合并数组  创建了一个新的数组
+    let b = [1,2,3];
+    let c = [...b]; //创建了一个新的数组 复制
+    let d = [...b,...b];  //合并数组
+
+
+//set  类数组(只能循环 取length，但不能用数组下的push pop等方法)
+// 元素不允许重复，用于数组去重
+    let s1 = [1,2,2,3,4];
+    let s2 = new Set(s1);
+    console.log('s2:',s2);  //Set(4) {1,2,3,4}
+
+    let s3 = [...s2];  //类数组 -> 数组
+    console.log('s3:',s3);  //[1,2,3,4]
+
+
+//class 类
+    class Person {
+        //构造方法
+        constructor(name,age){
+            this.name = name;
+            this.age = age;
+        }
+        say(){
+            console.log(this.name + 'say');
+        }
+    }
+    //传参
+    var person1 = new Person('zs',10);
+    //调用
+    person1.say();   //zssay
+
+    //继承extends constructor里必须有super调用父函数 放在第一行 在this之前
+    class Coder extends Person {
+        constructor(name,age,x){
+            super(name,age);
+            this.XX = x;
+        }
+        eat(){
+            console.log(this.XX);
+        }
+    }
+    var coder1 = new Coder('zz',20,'111');
+    coder1.say();   //子类调用父类的方法  zzsay
+    console.log(coder1);
+    coder1.eat();
+
+
+// Promise
+    let p1 = new Promise(function(resolve, reject){
+        setTimeout(() =>{
+            console.log(1111);
+            resolve();
+        },2000);
+    });
+    p1.then(function(){
+        return new Promise(function(resolve, reject){
+            console.log(2222+"开始");
+            setTimeout(() =>{
+                console.log(2222+"成功");
+                resolve();
+            },1000);
+        })
+    }).then(function(){
+        console.log('成功');
+    });
+
+// generator
+    function* fn(){
+           yield 'hello';  //遇到yield会停下来，再调用next函数才能继续往下走
+           yield 'world';
+           yield 'generator';
+           return 0;
+       }
+    var g1 = fn();
+    //next函数来执行generator
+    console.log(g1.next());  //输出yield后面的 hello false(未执行完)
+    console.log(g1.next());  //输出world
+
+
+    function* gen(){
+        console.log('gen开始');
+        let id = yield firstRequest();  //next传过来的值
+        console.log("第一个请求返回的id是" + id);
+        console.log('将要第二个请求');
+        yield secondRequest();
+        console.log('全部结束');
+    }
+    var g = gen();
+    g.next();  //next返回值 value是第一个field返回的值 为undefined，done:false
+
+    function firstRequest(){
+        setTimeout(() => {
+            console.log('第一个请求完成');
+            var x = 10;  //在第二个请求中用到，用next传参
+            g.next(x);  //输出 将要第二个请求,传的x会作为上一个yield的起始值 即id
+        },100)
+    }
+    function secondRequest(){
+        setTimeout(() => {
+            console.log('第二个请求完成');
+            g.next();  //输出 全部结束
+        },200)
+    }
+
+
+// async
+
+    async function timeout() {
+        return new Promise(resolve => {
+            setTimeout(resolve,100);
+        })
+    }
+    async function asyncPrint(value) {
+        console.log('函数执行',new Date().toTimeString());
+        await timeout();
+        console.log('延迟时间',new Date().toTimeString());
+    }
+    asyncPrint();
+</script>
+</body>
+</html>

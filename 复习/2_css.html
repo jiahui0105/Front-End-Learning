@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            height: 2000px;
+        }
+        div::after{
+            /*content必须要有*/
+            content:'haha';
+            /*伪元素是行级元素，不能设置宽高*/
+            /*width: 200px;*/
+            /*height: 200px;*/
+            background: yellow;
+        }
+        h1{
+            position: sticky;
+            top: 50px;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <!--
+        1.css选择器
+          元素选择器    *
+                        id选择器
+                        class选择器
+                        标签选择器
+
+          关系选择器    后代选择器div p ：div内的所有后代p，包括亲儿子
+                        子代选择器div > p ：其父元素是div的p，div的亲儿子p
+                        相邻选择器div + p ：紧邻其后的兄弟元素
+                        兄弟选择器div ~ p ：同级的所有兄弟元素
+
+          伪类选择器 :hover :active :focus
+                     :nth-of-type(n) 选择器匹配属于父元素的[特定类型]的第 N 个子元素的每个元素
+                     :nth-child(n)   选择器匹配属于其父元素的第 N 个子元素
+                     p:first-of-type  选择的 p 元素是其父元素的第一个 p 元素
+                     div:not(#container) 把除id为container之外的所有div标签都选中
+
+          伪元素选择器 ::after ::before  ::selection  ::first-letter
+
+          群组（分组）选择器 div,p ：所有div和所有p
+
+          属性选择器：a[target],a[target="_blank"]
+                                    <a href="https://www.w3school.com">w3school.com.cn</a>
+                                    <a href="http://www.disney.com" target="_blank">disney.com</a>
+                                    <a href="http://www.wikipedia.org" target="_top">wikipedia.org</a>
+
+
+        2.css优先级
+            !important
+            style（内联） 1000
+            id            100
+            class&伪类    10
+            标签&伪元素    1
+
+        3.position：
+            static 默认的  不会以任何特殊方式定位；它始终根据页面的正常流进行定位
+            absolute 绝对定位  定位后空间释放 相对于最近已定位的祖先元素 或者相对于浏览器body。top等属性根据border设置大小
+            relative 相对定位  定位后空间【不释放】 相对于自己的初始位置
+            fixed 固定定位 定位后空间释放 相对于浏览器的可视窗口。即使滚动页面 它也始终位于同一位置。top、right属性用于定位此元素。
+            sticky 吸顶效果 定位后空间释放 在目标区域内随着页面的滚动而保持在固定位置，超出这个区域后就就随着目标区域滚动。top等属性用于定位此元素。
+            z-index 属性指定元素的堆栈顺序（哪个元素应放置在其他元素的前面或后面）。元素可以设置正或负的堆叠顺序。
+
+        4.display     设置元素的 display 属性仅会更改元素的显示方式，而不会更改元素的种类。
+                      inline block inline-block table tabel-cell flex
+            display：none 可以隐藏元素。该元素将被隐藏，并且页面将显示为好像该元素不在其中 不会占用任何空间。
+                visibility:hidden; 也可以隐藏元素。但是，该元素仍将占用与之前相同的空间。元素将被隐藏，但仍会影响布局。
+
+            display：inline  块级元素边水平
+            display：block  行级元素边块级  设置水平or垂直导航栏
+            display: inline-block 允许在元素上设置宽和高。将保留上下外边距/内边距。将块级元素按照行级块元素的展示方式进行展示
+
+            display: table 作为块级表格来显示类似 <table>）
+            display: table-cell 作为一个表格单元格显示（类似 <td> 和 <th>）
+        5.浮动
+            float:left right
+            浮动元素脱离文档流 空间释放，宽高是内容撑开的，而不是单独占一行
+                子元素浮动 其父元素高度塌陷为0，父元素下面的元素会串上来
+            解决办法：
+                1)父元素设置高度
+                2)给父元素加溢出隐藏 overflow:hidden，原理是触发了BFC
+                3)给父元素加伪元素并清除浮动.clearfix::after{content: '';display: block;clear: both;}
+                4)在父元素内的最后 加一个 空的 子元素<div class="clearfix"></div>并清除浮动.clearfix{clear:both}
+
+
+            clear语法：
+                    清除所有左浮/右浮/浮动的元素。  「元素盒子的边不能和前面的浮动元素相邻」。
+                    clear : none | left | right | both
+
+                    取值：
+                    none : 默认值。允许两边都可以有浮动对象
+                    left : 不允许左边有浮动对象
+                    right : 不允许右边有浮动对象
+                    both : 不允许有浮动对象
+
+
+        6.盒模型 内容content + padding + border + margin
+            标准盒模型： （默认）box-sizing: content-box;
+                        width：200
+                        width = content.width
+            怪异盒模型：（IE6以及以下的浏览器 不写doctype）  box-sizing:border-box;
+                        width：200
+                        width = content.width + padding + border
+
+            标准盒模型 <=> 怪异盒模型 ：box-sizing
+
+        7.外边距合并
+            元素在同一方向上设置外边距 两个会合并，距离会取外边距margin大的那一个
+            解决办法：
+                    并列关系：兄弟元素只给一个元素加外边距
+                              子元素外边套一个overflow：hidden的div
+                    嵌套关系：1)父元素加溢出隐藏overflow:hidden
+                              2)给父元素加border:1px solid transparent
+                              3)给父元素或子元素加浮动float: left
+                              4)给父元素或子元素设置绝对定位 position:absolute  搭配top、left等
+
+        8.BFC(Block formatting context)：块级格式化上下文
+            https://www.cnblogs.com/lhb25/p/inside-block-formatting-ontext.html
+            是一个独立的渲染区域，只有Block-level box参与， 它规定了内部的Block-level Box如何布局，并且与这个区域外部毫不相干。
+
+            BFC布局规则：
+                1、内部的Box会在垂直方向，一个接一个地放置。
+                2、Box垂直方向的距离由margin决定。属于同一个BFC的两个相邻Box的margin会发生重叠
+                3、每个元素的margin box的左边， 与包含块border box的左边相接触(对于从左往右的格式化，否则相反)。即使存在浮动也是如此。
+                4、BFC的区域不会与float box重叠。
+                5、BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素。反之也如此。
+                6、计算BFC的高度时，浮动元素也参与计算
+
+            触发BFC条件？
+                1)根元素 html
+                2)float属性不为none (float:left)
+                3)position为absolute或fixed
+                4)display为inline-block, table-cell, table-caption, flex, inline-flex
+                5)overflow不为visible  (overflow:hidden)
+
+        9.重排 重绘
+            重绘：
+                就是在一个元素的外观被改变，但没有改变布局（宽高）的情况下发生，如改变visibility、outline、背景色等等。
+            重排：
+                就是DOM的变化影响到了元素的几何属性（宽和高），浏览器会重新计算元素的几何属性,
+                如：改变窗囗大小、改变文字大小、内容的改变、浏览器窗口变化，style属性的改变等等。
+                重排会影响浏览器性能  dom操作都是比较消耗性能的
+            reflow（回流）：
+                当浏览器发现某个部分发生了点变化 影响了布局，需要倒回去重新渲染，内行称这个回退的过程叫reflow
+
+    -->
+
+    <div>
+        hello world
+    </div>
+
+    <h1>呵呵</h1>
+</body>
+</html>

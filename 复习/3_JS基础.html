@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <!--
+        1.JS数据类型
+            基本数据类型 string number boolean null undefined symbol(ES6)  栈内存
+            引用数据类型 array object    堆内存 存储地址
+            typeof判断数据类型：
+                    '123'->"string"
+                    123 ->"number"
+                    true -> "boolean"
+                    null -> "object" (空对象)   getElementById()找不到返回null，其余的返回空数组
+                    undefined -> "undefined"  定义了没有赋值，数组越界，对象中没有的属性，函数没有返回值
+                    函数 -> function
+
+                    [1,2,3] -> "object"
+                    {name:'zs'} -> "object"
+                    判断数组和对象 :
+                                1)Array.isArray(a) 返回true/false
+                                2)a instanceof Array || b instanceof Object   返回true/false      （a是否是Array的实例化对象）
+                                3)a.constructor == Array || b.constructor == Object  返回true/false  （a的构造函数是否是Array）
+
+
+        2.类：具有相同属性和方法的集合
+
+        3.继承
+    -->
+
+<script>
+
+//判断数组和对象
+    // var a = [1,2,3];
+    // var b = {
+    //     name:'zs'
+    // };
+    // console.log(Array.isArray(a));
+    // console.log(b instanceof Array);
+    // console.log(b instanceof Object);
+    // console.log(a.constructor == Array);
+    // console.log(b.constructor == Object);
+
+
+// 类
+    //一个实例化对象
+    var p1 = {
+        name:'zs',      //属性
+        age:20,
+        say:function(){ //方法
+            console.log('哈哈')
+        }
+    };
+    console.log(p1);
+
+    //构造函数
+    function Person1(){
+        this.name = "zs";
+        this.age = 20;
+        this.say =function(){
+            console.log('呵呵')
+        }
+    }
+    var  p2 = new Person1();
+    console.log(p2);
+
+    //可传参的构造函数
+    function Person(name,age){
+        this.name = name;
+        this.age = age;
+        //比较浪费空间，可以把say提出来写在原型下
+        // this.say = function(){
+        //     console.log(this.name + '呵呵')
+        // }
+    }
+
+    /*
+        原型 prototype
+        ** 构造函数有(Person)一个prototype属性，是一个指针，指向他的原型对象sex和say等。。原型对象下的属性(sex)和方法(say) 可以被实例化对象所共享
+        ** 同时，原型下有一个constructor属性，指向他的构造函数(Person)
+
+            例如：console.log(p4);输出Person {name: "ls", age: 21}
+                    *Person {name: "ls", age: 21}
+                            age: 21
+                            name: "ls"
+                            *[[Prototype]]: Object
+                                    say: ƒ ()
+                                    sex: "女"
+                                    constructor: ƒ Person(name,age)
+        ** 实例化对象中的__proto__指向构造函数的原型
+
+        原型链：
+                当从一个对象那里调取属性或方法时，如果该对象不存在这样的属性或方法，就会去自己关联的prototype去找
+                如果prototype没有，就会去prototype关联的前辈里寻找。如果再没有，就继续查找Prototype.Prototype引用的对象，
+                依次类推，直到Prototype...Prototype为undefined（Object的Prototype就是undefined）。
+        作用域链：
+                和原型链一样，一层一层网上找。作用域链是找到window，而原型链是找到undefined。顶级的对象是object。
+
+        声明类，属性写在构造函数中，方法写在原型下
+     */
+
+    Person.prototype.sex = "女";  //原型下的属性 属性值固定，不方便。写在构造函数中比较好
+    Person.prototype.say = function(){  //原型下的方法
+        console.log(this.name + ' is saying')
+    };
+
+    //new的实例化对象
+    var  p3 = new Person("zs",20);
+    var  p4 = new Person("ls",21);
+
+    console.log(p3.sex);    //原型链：执行p3.sex 时 先到Person()里找this.sex，没有找到的话再到原型对象prototype里找
+    console.log(p3);
+    p3.say();
+
+    console.log(p4);
+    p4.say();
+
+    console.log(Person.prototype);  //say: ƒ ()  sex: "女"  constructor: ƒ Person2(name,age)
+    console.log(Person.prototype.constructor);//ƒ Person2(name,age){this.name = name;this.age = age;}
+
+
+// 继承
+    function Coder(name,age){
+        // 继承父类的属性
+        // 在构造函数中通过父类Person.call() 。。call可以改变this指向
+        Person.call(this,name,age);      //在类中，this指向实例化对象c1
+    }
+
+    //继承父类的方法  子类.prototype = new 父类的实例化对象
+    Coder.prototype = new Person();
+    Coder.prototype.constructor = Coder;
+    /*  构造函数Coder的prototype属性指向原型对象Person，原型Person的constructor属性也应指回其构造函数Coder。。
+        但此时原型对象Person是实例化出来的Person，下面没有constructor属性指回Coder
+        所以prototype.constructor 需要改回来 改成子类  */
+
+
+    var c1 = new Coder('wanger',30);
+    console.log(c1);
+    c1.say();
+    console.log(Coder.prototype.constructor);//ƒ Coder(name,age){Person.call(this,name,age);}
+</script>
+</body>
+</html>
